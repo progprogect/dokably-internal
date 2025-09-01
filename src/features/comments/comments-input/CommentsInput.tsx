@@ -18,6 +18,7 @@ import { mentionInputStyles } from './mentionsInputStyles';
 import { mentionStyles } from './mentionStyles';
 import styles from './style.module.css';
 import { Unit } from '@entities/models/unit';
+import { useWorkspaceContext } from '@app/context/workspace/context';
 
 export type CommentsInputProps = {
   className?: string;
@@ -33,6 +34,10 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const inputRef = useRef<HTMLInputElement | null>(null);
   const user = useUser();
   const { documentId } = useParams();
+  const { activeWorkspace } = useWorkspaceContext();
+
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
     enabled: !_.isNil(documentId),
@@ -139,46 +144,64 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
           }
         }}
       >
-        <MentionsInput
-          inputRef={inputRef}
-          value={commentMessage}
-          style={isLast ? { ...mentionInputStyles, suggestions: {
-            ...mentionInputStyles.suggestions,
-            list: {
-              ...mentionInputStyles.suggestions.list,
-              bottom: "calc(100% + 20px)"
-            }
-          }} : mentionInputStyles}
-          placeholder='Add a comment...'
-          onChange={(e) => setCommentMessage(e.target.value)}
-          onFocus={(e) => {
-            if (preserveSelection) {
-              e.preventDefault();
-            }
-          }}
-        >
-          <Mention
-            data={unitMembersQueryResult.data ?? []}
-            trigger={'@'}
-            style={mentionStyles}
-            markup=',!__display__,!'
+        {!isGuest ? (
+          <MentionsInput
+            inputRef={inputRef}
+            value={commentMessage}
+            style={isLast ? { ...mentionInputStyles, suggestions: {
+              ...mentionInputStyles.suggestions,
+              list: {
+                ...mentionInputStyles.suggestions.list,
+                bottom: "calc(100% + 20px)"
+              }
+            }} : mentionInputStyles}
+            placeholder='Add a comment...'
+            onChange={(e) => setCommentMessage(e.target.value)}
+            onFocus={(e) => {
+              if (preserveSelection) {
+                e.preventDefault();
+              }
+            }}
+          >
+            <Mention
+              data={unitMembersQueryResult.data ?? []}
+              trigger={'@'}
+              style={mentionStyles}
+              markup=',!__display__,!'
+            />
+          </MentionsInput>
+        ) : (
+          <input
+            ref={inputRef}
+            value={commentMessage}
+            placeholder='Add a comment...'
+            onChange={(e) => setCommentMessage(e.target.value)}
+            onFocus={(e) => {
+              if (preserveSelection) {
+                e.preventDefault();
+              }
+            }}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </MentionsInput>
+        )}
       </div>
       <div className={styles['input__bottom']}>
-        <button
-          className={styles['mention__button']}
-          type='button'
-          onClick={() => {
-            insertMentionTrigger();
-            // setCommentMessage(commentMessage => commentMessage?.length ? `${commentMessage + ' @'}` : "@");
-            if (!preserveSelection) {
-              inputRef.current?.focus();
-            }
-          }}
-        >
-          <MentionIcon />
-        </button>
+        {/* Скрываем кнопку mention для гостей */}
+        {!isGuest && (
+          <button
+            className={styles['mention__button']}
+            type='button'
+            onClick={() => {
+              insertMentionTrigger();
+              // setCommentMessage(commentMessage => commentMessage?.length ? `${commentMessage + ' @'}` : "@");
+              if (!preserveSelection) {
+                inputRef.current?.focus();
+              }
+            }}
+          >
+            <MentionIcon />
+          </button>
+        )}
         <button
           type='submit'
           className={styles['comment-button']}
