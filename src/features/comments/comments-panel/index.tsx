@@ -20,6 +20,7 @@ import { selectMembersForSuggestions } from '@app/queries/unit/members/selectors
 import { mentionInputStyles } from '../comments-input/mentionsInputStyles';
 import { mentionStyles } from '../comments-input/mentionStyles';
 import { Unit } from '@entities/models/unit';
+import { useWorkspaceContext } from '@app/context/workspace/context';
 
 interface ICommentPanel {
   handleDeleteComment: (id: string) => void;
@@ -54,6 +55,11 @@ const CommentPanel = ({
     enabled: !_.isNil(unit?.id),
     select: selectMembersForSuggestions,
   });
+
+  const { activeWorkspace } = useWorkspaceContext();
+
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   useEffect(() => {
     // setReadOnly(true);
@@ -204,30 +210,42 @@ const CommentPanel = ({
               className={'comment-view__form'}
               onSubmit={onSubmit}
             >
-              <MentionsInput
-                inputRef={inputRef}
-                value={commentText}
-                style={{
-                  ...mentionInputStyles,
-                  suggestions: {
-                    ...mentionInputStyles.suggestions,
-                    list: {
-                      ...mentionInputStyles.suggestions.list,
-                      bottom: 'calc(100% + 20px)',
+              {!isGuest ? (
+                <MentionsInput
+                  inputRef={inputRef}
+                  value={commentText}
+                  style={{
+                    ...mentionInputStyles,
+                    suggestions: {
+                      ...mentionInputStyles.suggestions,
+                      list: {
+                        ...mentionInputStyles.suggestions.list,
+                        bottom: 'calc(100% + 20px)',
+                      },
                     },
-                  },
-                }}
-                placeholder='Add a comment'
-                onChange={(e) => setCommentText(e.target.value)}
-                disabled={addCommentIsDisabled}
-              >
-                <Mention
-                  data={unitMembersQueryResult.data ?? []}
-                  trigger={'@'}
-                  style={mentionStyles}
-                  markup=',!__display__,!'
+                  }}
+                  placeholder='Add a comment'
+                  onChange={(e) => setCommentText(e.target.value)}
+                  disabled={addCommentIsDisabled}
+                >
+                  <Mention
+                    data={unitMembersQueryResult.data ?? []}
+                    trigger={'@'}
+                    style={mentionStyles}
+                    markup=',!__display__,!'
+                  />
+                </MentionsInput>
+              ) : (
+                // Для гостей используем обычный input без функционала упоминаний
+                <input
+                  ref={inputRef}
+                  value={commentText}
+                  placeholder='Add a comment'
+                  onChange={(e) => setCommentText(e.target.value)}
+                  disabled={addCommentIsDisabled}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              </MentionsInput>
+              )}
               <button
                 type='submit'
                 disabled={commentText.length === 0}

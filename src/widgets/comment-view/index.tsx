@@ -8,6 +8,8 @@ import { getDate } from '@app/utils/date';
 import { Mention, MentionsInput, SuggestionDataItem } from 'react-mentions';
 import { mentionInputStyles } from '@features/comments/comments-input/mentionsInputStyles';
 import { mentionStyles } from '@features/comments/comments-input/mentionStyles';
+import { useWorkspaceContext } from '@app/context/workspace/context';
+import useUser from '@app/hooks/useUser';
 
 interface ICommentView {
   comment: CommentModel;
@@ -39,6 +41,11 @@ const CommentView = ({
 }: ICommentView) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [replyText, setReplyText] = useState<string>('');
+  const { activeWorkspace } = useWorkspaceContext();
+  const user = useUser();
+
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   const handleSendReply = (event: any) => {
     event.preventDefault();
@@ -153,27 +160,39 @@ const CommentView = ({
                 autoFocus={autofocus}
               /> */}
 
-              <MentionsInput
-                inputRef={inputRef}
-                value={replyText}
-                style={isLast ? { ...mentionInputStyles, suggestions: {
-                  ...mentionInputStyles.suggestions,
-                  list: {
-                    ...mentionInputStyles.suggestions.list,
-                    bottom: "calc(100% + 20px)"
-                  }
-                }} : mentionInputStyles}
-                placeholder='Reply'
-                onChange={(e) => setReplyText(e.target.value)}
-                autoFocus={autofocus}
-              >
-                <Mention
-                  data={unitMembersQueryResultData ?? []}
-                  trigger={'@'}
-                  style={mentionStyles}
-                  markup=',!__display__,!'
+              {!isGuest ? (
+                <MentionsInput
+                  inputRef={inputRef}
+                  value={replyText}
+                  style={isLast ? { ...mentionInputStyles, suggestions: {
+                    ...mentionInputStyles.suggestions,
+                    list: {
+                      ...mentionInputStyles.suggestions.list,
+                      bottom: "calc(100% + 20px)"
+                    }
+                  }} : mentionInputStyles}
+                  placeholder='Reply'
+                  onChange={(e) => setReplyText(e.target.value)}
+                  autoFocus={autofocus}
+                >
+                  <Mention
+                    data={unitMembersQueryResultData ?? []}
+                    trigger={'@'}
+                    style={mentionStyles}
+                    markup=',!__display__,!'
+                  />
+                </MentionsInput>
+              ) : (
+                // Для гостей используем обычный input без функционала упоминаний
+                <input
+                  ref={inputRef}
+                  value={replyText}
+                  placeholder='Reply'
+                  onChange={(e) => setReplyText(e.target.value)}
+                  autoFocus={autofocus}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              </MentionsInput>
+              )}
               <button
                 type='submit'
                 disabled={replyText.length === 0}
