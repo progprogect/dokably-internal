@@ -1,0 +1,13 @@
+stages:
+  - lint
+
+eslint_check:
+  stage: lint
+  image: node:20
+  before_script:
+    - npm ci
+  script:
+    - npm run lint
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
+  allow_failure: false

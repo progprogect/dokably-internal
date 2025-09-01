@@ -1,0 +1,36 @@
+.input {
+  margin-block: auto;
+  margin-inline: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+}
+
+.filesCell {
+  width: 116px;
+  .filesCellLabel {
+    height: 40px;
+    width: 100%;
+  }
+  label {
+    min-height: auto;
+    border: 0;
+    svg {
+      font-size: 20px;
+    }
+  }
+  > div {
+    padding: initial;
+    max-width: calc(100% - 8px);
+    margin: 0 4px;
+    svg {
+      display: none;
+    }
+    a {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+    }
+  }
+}

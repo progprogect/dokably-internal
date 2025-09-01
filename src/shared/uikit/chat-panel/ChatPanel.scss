@@ -1,0 +1,201 @@
+// CSS переменные из Figma
+:root {
+  --text-icons-60: rgba(127, 126, 128, 1);
+  --text-icons-black: rgba(41, 40, 44, 1);
+  --text-icons-70: rgba(105, 105, 107, 1);
+  --text-icons-10: rgba(234, 234, 234, 1);
+  --background-hover: rgba(237, 237, 238, 1);
+  --text-icons-80: rgba(84, 83, 86, 1);
+  --text-icons-40: rgba(169, 169, 171, 1);
+  --text-icons-20: rgba(212, 212, 213, 1);
+  --background-gray: rgba(247, 247, 248, 1);
+}
+
+// Анимации и переходы для панели
+.chat-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 460px;
+  height: 100vh;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  
+  &--open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    height: 100%;
+    background: transparent;
+    pointer-events: auto;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 460px;
+    height: 100vh;
+    min-height: 100vh;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(74, 134, 255, 0.04), 0px 8px 16px rgba(74, 134, 255, 0.08);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    font-family: "Euclid Circular A-Regular", Helvetica, Arial, sans-serif;
+  }
+
+  &--open &__content {
+    transform: translateX(0);
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  // Header структура
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 16px 4px 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__toolbar-left,
+  &__toolbar-right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__toolbar-left {
+    gap: 2px;
+  }
+
+  &__toolbar-right {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  &__toolbar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+
+
+
+  &__tabs {
+    display: flex;
+    gap: 32px;
+    padding: 0 0 0 20px;
+    width: 100%;
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  &__tab {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+
+  &__tab-text {
+    padding: 6px 0 8px 2px;
+    font-family: 'Euclid Circular A', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #949395;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  &__tab--active &__tab-text {
+    color: #292A2C;
+    font-weight: 400;
+  }
+
+  &__tab-indicator {
+    height: 1px;
+    background: #292A2C;
+    width: calc(100% - 2px);
+    border-radius: 0;
+    margin-top: 0;
+    margin-left: 2px;
+  }
+}
+
+// Адаптивные стили для разных экранов
+@media (max-width: 1024px) {
+  .chat-panel {
+    width: 100vw;
+    
+    &__content {
+      width: 100vw;
+    }
+  }
+  
+  .chat-panel__toolbar {
+    padding: 0 12px 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-panel__toolbar-left {
+    gap: 2px;
+  }
+  
+  .chat-panel__toolbar-right {
+    gap: 4px;
+  }
+  
+  .chat-panel__tabs {
+    gap: 16px;
+    padding: 0 0 0 16px;
+  }
+} 

@@ -1,0 +1,115 @@
+.tableWrapper {
+  display: grid;
+  grid-template-columns: max-content 20px;
+  grid-template-rows: max-content 20px;
+  gap: 4px;
+  overflow-x: auto;
+  margin-top: 0px;
+  margin-left: -14px;
+  position: relative;
+  td[class*='email-field'] {
+    &:hover {
+      div[class*='mailIcon'] {
+        display: block;
+      }
+    }
+  }
+}
+
+.addRowWrapper {
+  width: calc(100% - 14px);
+  max-width: 734px;
+  margin-left: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  border-bottom: none;
+  transition: background-color 0.5s ease-in-out;
+  position: sticky;
+  left: 0;
+  bottom: 0;
+
+  & svg {
+    font-size: small;
+    stroke: transparent;
+    transition: stroke 0.5s ease-in-out;
+  }
+
+  &:hover {
+    background-color: #eaeaea;
+    transition: all 0.5s ease-in-out;
+
+    & svg {
+      stroke: #9e9e9e;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+.addColumnWrapper {
+  height: calc(100% - 14px);
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  right: 0;
+  transition: background-color 0.5s ease-in-out;
+
+  & svg {
+    font-size: small;
+    stroke: transparent;
+    transition: stroke 0.5s ease-in-out;
+  }
+
+  &:hover {
+    background-color: #eaeaea;
+
+    & svg {
+      stroke: #9e9e9e;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+.addColumnWrapperHover {
+  background-color: #eaeaea;
+  transition: all 0.5s ease-in-out;
+  & svg {
+    stroke: #9e9e9e;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+.addRowWrapperHover {
+  background-color: #eaeaea;
+  transition: all 0.5s ease-in-out;
+
+  & svg {
+    stroke: #9e9e9e;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.listPadding {
+  padding: 8px;
+  button {
+    padding: 8px;
+    margin: 1px 0;
+  }
+}

@@ -1,0 +1,4 @@
+.dokably-table-of-content:hover .dokably-context-menu {
+    margin-top: 10px;
+    display: flex;
+}

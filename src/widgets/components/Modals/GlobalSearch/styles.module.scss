@@ -1,0 +1,33 @@
+.globalSearchResults {
+	ul {
+		li {
+			margin-bottom: 2px;
+			a {
+				font-size: 12px;
+				font-weight: 500;
+				display: flex;
+				align-items: center;
+				color: #69696B;
+				padding: 8px;
+				transition: .3s;
+				border-radius: 8px;
+				> svg, div[class*="colored-icon"] {
+					margin-right: 8px;
+					width: 16px;
+					height: 16px;
+				}
+				&:hover {
+					background-color: #EDEDEE;
+				}
+				.subtitle {
+					font-size: 10px;
+					font-weight: 400;
+					color: #A9A9AB;
+					span:first-child {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}

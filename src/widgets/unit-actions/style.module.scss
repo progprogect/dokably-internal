@@ -1,0 +1,20 @@
+.unitAction {
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  padding: 2px;
+
+  box-shadow: var(--box-shadow2);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  pointer-events: all;
+  z-index: var(--zIndexWhiteboard);
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: fit-content;
+  column-gap: 14px;
+
+  gap: 8px;
+}

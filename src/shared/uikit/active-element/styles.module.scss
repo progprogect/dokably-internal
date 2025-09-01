@@ -1,0 +1,11 @@
+.active-element {
+  border-radius: var(--border-radius);
+
+  &:disabled,
+  .disabled {
+    background-color: transparent;
+    color: var(--text50);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

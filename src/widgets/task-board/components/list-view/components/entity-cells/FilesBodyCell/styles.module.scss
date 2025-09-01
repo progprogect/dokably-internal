@@ -1,0 +1,135 @@
+
+.addLinkButton {
+  display: flex;
+  align-items: center;
+  color: #949395;
+  font-size: 14px;
+  // margin: 4px 0;
+  &:hover {
+    color: #29282C;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+}
+
+.tableCellFiles {
+  padding: 0;
+}
+
+.filesWrapper {
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 4px;
+  margin: 0 !important;
+  padding: 2px 4px !important;
+  width: 100%;
+  max-width: 100% !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  cursor: pointer;
+  & > span {
+    width: auto !important;
+  }
+  .valueElement {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #F4F4F4;
+    border: 2px solid #F4F4F4;
+    border-radius: 4px;
+    position: relative;
+    .file {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			span {
+				opacity: 0;
+				position: absolute;
+				inset: 0;
+				transition: .3s;
+				background-color: rgba(#F4F4F4, 0.8);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 4px;
+        a {
+          margin-top: 2px;
+        }
+				svg:hover {
+					stroke: #4A86FF;
+          path {
+            stroke: #4A86FF;
+          }
+				}
+
+        svg {
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+          stroke: #29282C;
+          path {
+            stroke: #29282C;
+          }
+        }
+			}
+
+			&:hover {
+				color: #4A86FF;
+				span {
+					opacity: 1;
+				}
+			}
+    }
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      border-radius: 2px;
+    }
+  }
+}
+
+.filesCell {
+  width: 100%;
+  height: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  label {
+    min-height: auto;
+    height: 100%;
+    border: 0;
+    svg {
+      font-size: 20px;
+    }
+  }
+  > div {
+    padding: initial;
+    max-width: calc(100% - 8px);
+    margin: 0 4px;
+    svg {
+      display: none;
+    }
+  }
+  a {
+    font-size: 12px;
+    line-height: 15px;
+    color: #29282C;
+    padding: 2px;
+    border-radius: 4px;
+    background-color: #F7F7F8;
+    cursor: pointer;
+  }
+}

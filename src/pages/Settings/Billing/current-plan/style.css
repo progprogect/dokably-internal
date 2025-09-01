@@ -1,0 +1,136 @@
+.currentplan__header {
+  color: var(--text100);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 26px;
+}
+
+.currentplan__userplan {
+  /* width: 570px; */
+  height: 120px;
+  border-radius: 8px;
+  background: var(--background-accent-blue);
+  padding: 0px 30px;
+  margin-left: -30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.currentplan__pricing {
+  /* margin-top: 36px; */
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.currentplan__button {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.pricing__name {
+  color: var(--background-dark-blue-hover);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-transform: capitalize;
+  /* margin-bottom: 6px; */
+}
+
+.pricing__tariff {
+  color: var(--text100);
+  opacity: 0.6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.currentplan__upgradebtn {
+  align-self: center;
+  /* margin-left: 285px; */
+}
+
+.currentplan__upgradebtn-unlimited {
+  align-self: center;
+  width: 116px;
+}
+
+.currentplan__detailsbtn-unlimited {
+  align-self: center;
+  margin-left: 34px;
+  margin-right: 12px;
+}
+
+.currentplan__detailsbtn-unlimited:hover {
+  background-color: var(--text5);
+}
+
+.currentplan__info {
+  /* display: grid;
+  grid-template-columns: 220px 220px;
+  column-gap: 40px;
+  row-gap: 48px; */
+  display: flex;
+  flex-wrap: wrap;
+}
+.currentplan__info > div {
+  width: 50%;
+  margin-bottom: 32px;
+}
+
+.info__header {
+  color: var(--text90);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.info__txt {
+  color: var(--text90);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+}
+
+.info__description {
+  color: var(--text50);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  /* line-height: 20px; */
+  margin-top: 10px;
+  width: 225px;
+}
+
+.currentplan__pricing-unlimited {
+  display: flex;
+  width: 235px;
+}
+
+.billingDetails,
+.invoiceHistory {
+  margin-top: 40px;
+  /* padding-bottom: 100px; */
+}
+.invoiceHistory {
+  padding-bottom: 100px;
+}
+
+.billingDetails__title,
+.invoiceHistory__title {
+  font-size: 28px;
+  font-weight: 400;
+  counter-reset: #29282C;
+  margin-bottom: 28px;
+}
+
+.invoiceHistory__info {
+  padding-bottom: 50px;
+}

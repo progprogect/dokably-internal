@@ -1,0 +1,262 @@
+.cell {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  inset: 0;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  inset: 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px;
+  gap: 4px;
+}
+
+.active {
+  inset: -1px;
+  border: 1px solid #4a86ff;
+}
+
+.popover {
+  margin-top: 14px;
+}
+
+.status {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  gap: 4px;
+
+  &:hover {
+    .remove {
+      display: block;
+    }
+  }
+}
+
+.remove {
+  display: none;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  // width: 216px;
+  padding: 8px;
+  height: 100%;
+  flex-direction: column;
+  background-color: #fff;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.container *,
+.menu * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 32px;
+  border: 1px solid var(--text20);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  padding-left: 8px;
+  color: var(--text70);
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--primary-hover);
+  }
+}
+
+.activeInput {
+  padding-left: 32px;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--text70);
+  gap: 8px;
+  border-radius: 8px;
+  height: 32px;
+  padding: 0 4px 0 4px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--background-gray-hover);
+
+    .more {
+      display: flex;
+    }
+
+    .check {
+      display: none;
+    }
+  }
+}
+
+.more {
+  display: none;
+  margin-left: auto;
+  color: var(--text60);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-color: var(--background-gray-hover);
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+
+  &:hover {
+    background-color: var(--text20);
+  }
+}
+
+.check {
+  display: block;
+  color: var(--text60);
+  margin-top: 4px;
+  margin-left: auto;
+}
+
+.optionInput {
+  width: 100%;
+  min-width: 200px;
+  height: 32px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid var(--text20);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+
+.optionContainer {
+  width: 100%;
+  padding-block: 5px;
+  border-radius: var(--border-radius);
+  position: relative;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.flag {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+.colorContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 24px;
+  padding: 0 2px;
+}
+
+.editContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--text20);
+  padding-bottom: 8px;
+}
+
+.color {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid rgb(255, 255, 255);
+  position: relative;
+}
+
+.selected::after {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  top: -3px;
+  left: -3px;
+  content: '';
+  border: 1px solid var(--primary-hover);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 4px;
+}
+
+.cancel {
+  flex: 1;
+  color: var(--text50);
+  height: 28px;
+}
+
+.save {
+  flex: 1;
+  color: #fff;
+  background-color: var(--primary-hover);
+  border-radius: 8px;
+  height: 28px;
+}
+
+.delete {
+  height: 28px;
+  color: var(--dark-pink);
+  border: 1px solid var(--dark-pink);
+  border-radius: 8px;
+}

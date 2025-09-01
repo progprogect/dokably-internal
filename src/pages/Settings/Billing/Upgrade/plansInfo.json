@@ -1,0 +1,240 @@
+{
+	"titles": ["Free", "{{price}}", "Let's talk"],
+	"subtitles": ["Free Forever", "Unlimited", "Personalized"],
+	"descriptions": ["best for personal use", "best for small teams", "with unique needs"],
+	"params": [
+		{
+			"title": "Usage",
+			"items": [
+				{
+					"name": "Number of Docs",
+					"values": ["Up to 50", "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "File upload",
+					"values": ["Up to 10 MB per file", "Up to 200 MB per file", "Let's discuss"]
+				},
+				{
+					"name": "Attachment storage",
+					"values": ["Up to 2 GB per team", "Up to 5 GB per user", "Let's discuss"]
+				},
+				{
+					"name": "Workspace members",
+					"values": ["Unlimited free plan members", "5,99$ per month per user", "Let's discuss"]
+				},
+				{
+					"name": "Whiteboards",
+					"values": ["5 whiteboards", "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "Tasks",
+					"values": ["Unlimited", "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "Channels",
+					"values": ["5 Channels", "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "Lists",
+					"values": ["100 lists per Channel", "200 lists per Channel", "Let's discuss"]
+				},
+				{
+					"name": "Guests",
+					"values": ["10 guests", "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "AI Free Usage",
+					"values": ["25", "50", "Let's discuss"]
+				},
+				{
+					"name": "AI Compatible",
+					"values": [false, true, true]
+				}
+			]
+		},
+		{
+			"title": "Essentials",
+			"items": [
+				{
+					"name": "Kanban views",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Table views",
+					"values": [true, true, true]
+				},
+				{
+					"name": "List views",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Gantt views",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Domain capture",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Databases",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Unlimited rich doc editor",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Custom statuses",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Task Checklists and to-dos",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Mind maps",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Notes",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Rich tables",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Tags and priorities",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Embeds",
+					"values": [true, "Unlimited", "Unlimited"]
+				},
+				{
+					"name": "Rich canvas",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Unlimited tasks and sub-tasks",
+					"values": [true, true, true]
+				}
+			]
+		},
+		{
+			"title": "Sharing and Collaboration",
+			"items": [
+				{
+					"name": "Real-time collaboration and commenting",
+					"values": [true, true, true]
+				},
+				{
+					"name": "User groups and permissions",
+					"values": [false, true, true]
+				},
+				{
+					"name": "Guest collaborators",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Public sharing",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Privacy and Sharing",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Custom domains",
+					"values": [false, true, true]
+				},
+				{
+					"name": "Team sharing for Channels",
+					"values": [false, true, true]
+				},
+				{
+					"name": "Private channels and docs",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Protect doc editing",
+					"values": [true, true, true]
+				}
+			]
+		},
+		{
+			"title": "API and Integrations",
+			"items": [
+				{
+					"name": "Public API",
+					"values": [false, true, true]
+				},
+				{
+					"name": "50+ Native Integrations (Figma, Trello, Miro, Jira, Slack, etc.)",
+					"values": [false, false, false]
+				},
+				{
+					"name": "Google Drive",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Embed files, docs, whiteboards, tasks or anything",
+					"values": [true, true, true]
+				}
+			]
+		},
+		{
+			"title": "Success and support",
+			"items": [
+				{
+					"name": "Priority support",
+					"values": [false, false, true]
+				},
+				{
+					"name": "Dedicated account manager",
+					"values": [false, false, true]
+				},
+				{
+					"name": "Personalized onboarding",
+					"values": [false, false, true]
+				},
+				{
+					"name": "Resource library",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Webinars and trainings",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Chat and email support",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Security",
+					"values": [false, false, true]
+				},
+				{
+					"name": "Automatic data back-ups",
+					"values": [true, true, true]
+				},
+				{
+					"name": "Advanced sharing rules",
+					"values": [false, false, true]
+				},
+				{
+					"name": "2 step verification",
+					"values": [true, true, true]
+				},
+				{
+					"name": "SAML Single Sign-On (SSO)",
+					"values": [false, false, true]
+				},
+				{
+					"name": "Audit log (on demand)",
+					"values": [false, false, true]
+				}
+			]
+		}
+	]
+}

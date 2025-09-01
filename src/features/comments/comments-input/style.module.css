@@ -1,0 +1,89 @@
+.comment-button {
+  border-radius: 50%;
+  padding: 4px;
+
+  height: 24px;
+  width: 24px;
+
+  background-color: var(--background-dark-blue);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-button:disabled {
+  background-color: var(--text20);
+}
+
+strong {
+  position: relative;
+  z-index: 10;
+}
+
+.comment__input {
+  outline: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 400px;
+  flex: 1;
+  z-index: 20;
+  align-self: center;
+  width: 100%;
+}
+
+.comment-button__icon {
+  align-self: center;
+  height: 18px;
+  width: 18px;
+  pointer-events: all;
+}
+
+.comment--button__icon > svg > path[stroke] {
+  stroke: var(--background-dark-blue-hover);
+}
+
+.comment__input-view {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  width: 300px;
+  min-height: 40px;
+  box-shadow: var(--box-shadow);
+  margin-top: 4px;
+  border-radius: var(--border-radius);
+  background: var(--white, #fff);
+}
+
+.comment__input-view-task {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  width: 300px;
+  min-height: 40px;
+  box-shadow: var(--box-shadow);
+  margin-top: 4px;
+  border-radius: var(--border-radius);
+  background: var(--white, #fff);
+}
+
+.input__bottom {
+  padding: 8px;
+  border-top: 1px solid var(--text5);
+  display: flex;
+  justify-content: space-between;
+}
+
+.mention__button {
+  margin-left: 6px;
+  padding: 5px;
+}
+
+.mention__button:hover {
+  background-color: var(--text5);
+  border-radius: var(--border-radius);
+}
+
+.comment__input_mention {
+  color: var(--background-dark-blue-hover);
+}

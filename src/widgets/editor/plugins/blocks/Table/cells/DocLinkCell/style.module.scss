@@ -1,0 +1,178 @@
+.attachedLinksCell {
+	width: 100%;
+	max-width: 100%;
+	cursor: pointer;
+	padding: 4px;
+	height: 100%;
+	& > div[class*="secondMenu"] {
+		position: absolute;
+		z-index: 6;
+		top: 0;
+		&[class*="values-menu"] {
+			div[class*="sticky"] {
+				display: flex;
+				flex-direction: column;
+			}
+			button {
+				display: flex;
+				align-items: center;
+				color: #949395;
+				font-size: 14px;
+				margin: 4px 0;
+				&:hover {
+					color: #29282C;
+				}
+				svg {
+					margin-right: 10px;
+				}
+			}
+			label {
+				min-height: auto;
+				border: 0;
+				color: #949395;
+				font-size: 14px;
+				margin: 4px 0;
+				justify-content: flex-start;
+				svg {
+					margin-right: 10px;
+				}
+				&:hover {
+					color: #29282C;
+				}
+			}
+		}
+		&[class*="documents-menu"] {
+			z-index: 7;
+			top: 40px;
+		}
+	}
+	.noDocs {
+		color: #949395;
+		font-size: 14px;
+	}
+	.attachedLinksCellLabel {
+		color: #69696B;
+		max-width: 100%;
+		text-wrap: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: flex;
+		flex-wrap: wrap;
+		height: 100%;
+		width: 100%;
+		span {
+			display: flex;
+			align-items: center;
+			margin-right: 4px;
+		}
+	}
+	.valueElement {
+		color: #69696B;
+		background-color: #F4F4F4;
+		padding: 2px 4px;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		width: max-content;
+		margin-bottom: 4px;
+		white-space: nowrap;
+		overflow-x: hidden;
+		position: relative;
+		max-width: 200px;
+		a {
+			margin: 0 4px;
+			width: 100%;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			font-size: 14px;
+			&:hover {
+				cursor: pointer;
+				color: #4A86FF;
+			}
+		}
+		.iconWrapper {
+			width: 16px;
+			margin-right: 0;
+			svg {
+				position: static !important;
+				opacity: 1 !important;
+			}
+		}
+		svg {
+			width: 16px;
+			height: 16px;
+			&:last-child {
+				position: absolute;
+				right: 2px;
+				transition: .3s;
+				opacity: 0;
+				background-color: #F4F4F4;
+				border-radius: 4px;
+			}
+		}
+		&:hover {
+			svg:last-child {
+				opacity: 1;
+			}
+		}
+	}
+	.addLinkButton {
+		display: flex;
+		align-items: center;
+		color: #949395;
+		font-size: 14px;
+		margin: 4px 0;
+		&:hover {
+			color: #29282C;
+		}
+		svg {
+			width: 16px;
+			height: 16px;
+			margin-right: 8px;
+		}
+	}
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.filesCell {
+	&Empty {
+		height: 40px;
+		label {
+			height: 32px;
+		}
+	}
+	.valueElement {
+		width: 100%;
+	}
+  label {
+    min-height: auto;
+    border: 0;
+		justify-content: flex-start;
+		height: 100%;
+    svg {
+      font-size: 20px;
+    }
+  }
+  > div {
+    padding: initial;
+    max-width: calc(100% - 8px);
+    margin: 0 4px;
+    > svg {
+      display: none;
+    }
+    a {
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+    }
+  }
+}

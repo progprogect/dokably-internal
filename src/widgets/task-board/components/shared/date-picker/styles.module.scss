@@ -1,0 +1,11 @@
+.datePickerWrapper {
+	button[class*="icon-button"] {
+		opacity: 0;
+		margin-top: 2px;
+	}
+	&:hover {
+		button[class*="icon-button"] {
+			opacity: 1;
+		}
+	}
+}

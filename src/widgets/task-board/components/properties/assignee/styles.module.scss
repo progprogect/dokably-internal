@@ -1,0 +1,19 @@
+.assigneePopover {
+	div[class*="option"] {
+		padding: 0 4px 0 0;
+		span[class*="status"] {
+			color: #69696B !important;
+			border: none;
+			gap: 8px;
+		}
+		&:hover svg {
+			display: block;
+		}
+	}
+}
+
+.assigneeValues {
+	& > div {
+		position: relative;
+	}
+}

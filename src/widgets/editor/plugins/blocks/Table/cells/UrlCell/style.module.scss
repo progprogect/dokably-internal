@@ -1,0 +1,30 @@
+.editLinkMenu {
+	padding: 10px 16px;
+	&Value {
+		font-size: 14px;
+		input {
+			outline: 1px solid #eaeaea;
+			border-radius: 3px;
+		}
+		a {
+			cursor: pointer;
+		}
+		span {
+			cursor: default;
+		}
+		svg {
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+		}
+	}
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  cursor: pointer;
+}

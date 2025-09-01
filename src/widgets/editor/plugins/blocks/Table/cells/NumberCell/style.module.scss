@@ -1,0 +1,17 @@
+.root {
+  padding: 10px;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input {
+    outline: none;
+    width: 100%;
+  }
+  .label {
+    text-align: right;
+    height: 24px;
+  }
+}

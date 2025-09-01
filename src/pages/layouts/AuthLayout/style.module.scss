@@ -1,0 +1,70 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
+  font-size: 14px;
+  line-height: 14px;
+
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  z-index: 2;
+
+  img {
+    width: 96px;
+    margin-left: 256px;
+  }
+
+  @media (max-width: 1024px) {
+    img {
+      margin-left: 15px;
+    }
+  }
+}
+
+.background {
+  position: absolute;
+  z-index: 1;
+
+  svg {
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+.workspace {
+  width: 100%;
+  height: calc(100vh - 58px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.window {
+  background: #f7f7f8;
+  border-radius: 24px;
+
+  min-width: 420px;
+
+  padding: 50px 60px 30px 60px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  position: relative;
+
+  box-sizing: border-box;
+}

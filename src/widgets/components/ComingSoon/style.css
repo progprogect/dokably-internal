@@ -1,0 +1,23 @@
+.coming-soon {
+  position: absolute;
+  height: 16px;
+  padding: 0px 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 10px;
+
+  color: #2554f6;
+  z-index: 22;
+
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(37, 84, 246, 0.4);
+
+  z-index: 3;
+}

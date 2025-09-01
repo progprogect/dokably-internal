@@ -1,0 +1,44 @@
+.bottomPanel {
+  z-index: var(--zIndexWhiteboard);
+  pointer-events: none;
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 2px;
+  height: 40px;
+
+  width: fit-content;
+  border-radius: var(--border-radius);
+
+  bottom: 18px;
+  right: 19px;
+
+  background-color: var(--white);
+
+  box-shadow: var(--box-shadow2);
+}
+
+.zoomLevel {
+  color: var(--text100);
+  text-align: right;
+  font-family: Euclid Circular A;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.icon {
+  height: 22px;
+  width: 22px;
+
+  & > path {
+    stroke: var(--text100);
+  }
+}

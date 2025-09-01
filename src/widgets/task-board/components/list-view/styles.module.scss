@@ -1,0 +1,158 @@
+.table {
+  margin-left: -14px;
+  padding-left: 14px;
+}
+
+.header-row,
+.body-row {
+  display: flex;
+  width: 100%;
+}
+
+.body-cell {
+  background-color: var(--white);
+}
+
+
+.list-view {
+  .body-cell {
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+
+  .body-row {
+    &:has(.row-action-button:hover) .body-cell {
+      background-color: var(--background-gray-hover);
+    }
+
+    &:has(+.body-row-child) {
+      .body-cell {
+        &:first-child {
+          border-bottom-left-radius: 0;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+
+    &:not(:has(+.body-row-child)) {
+      .body-cell {
+        &:first-child {
+          border-bottom-left-radius: 8px;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+
+    &:not(.body-row-child):not(:first-child) {
+      margin-top: 6px;
+    }
+
+    &:has(.row-action-button:hover) .body-cell:first-child {
+      border-radius: 0;
+    }
+  }
+
+  .body-row-child .body-cell {
+    border-radius: 0;
+  }
+
+  .body-row_active {
+    &.body-row_active.body-row_active .body-cell {
+      border-top: 1px solid var(--primary-hover);
+      border-bottom: 1px solid var(--primary-hover);
+      background-color: var(--light-blue);
+
+      &:first-child {
+        border-radius: 0;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        border-right: 1px solid var(--primary-hover);
+      }
+    }
+  }
+
+  .add-task-row {
+    margin-top: 6px;
+    border-radius: 8px;
+    position: sticky;
+    left: 0;
+  }
+}
+
+.table-view {
+  .body-cell {
+    border-top: 1px solid var(--text20);
+    border-right: 1px solid var(--text20);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .body-row {
+    &:last-child .body-cell {
+      border-bottom: 1px solid var(--text20);
+    }
+
+    &:first-child .header-cell_active {
+      border-top-color: var(--primary-hover);
+    }
+
+    &:has(.row-action-button:hover) .body-cell {
+      border-color: var(--text20);
+      background-color: var(--background-gray);
+    }
+    div[class*="body-cell-content"] {
+      input {
+        border-radius: 0px;
+      }
+      div[class*="filesWrapper"] {
+        border-radius: 0px;
+      }
+    }
+  }
+
+  .body-row_active {
+    &+.body-row .body-cell {
+      border-top: none;
+    }
+
+    &.body-row_active.body-row_active .body-cell {
+      border-bottom: 1px solid var(--primary-hover);
+      border-color: var(--primary-hover);
+      background-color: var(--light-blue);
+    }
+  }
+}
+
+.table-view,
+.list-view {
+  .body-row {
+    &:hover {
+      button[class*="action-button"] {
+        opacity: 1;
+        border-color: var(--text20);
+        background-color: var(--text20);
+        & > svg {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

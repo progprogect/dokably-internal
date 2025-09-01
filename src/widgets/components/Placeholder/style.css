@@ -1,0 +1,19 @@
+.dokably-placeholder {
+  position: absolute !important;
+  left: 0px;
+  user-select: none;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  color: #29282c;
+  opacity: 0.4;
+
+  pointer-events: none;
+
+  display: flex;
+}
+
+.dokably-placeholder__small {
+  font-size: 14px;
+  line-height: 14px;
+}

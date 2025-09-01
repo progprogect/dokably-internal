@@ -1,0 +1,95 @@
+.btn-default {
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.transparent {
+  background: transparent;
+}
+
+.primary {
+  color: var(--white);
+  background: var(--dark-blue);
+}
+
+.primary:hover {
+  background-color: var(--background-dark-blue-hover);
+}
+
+.primary:disabled {
+  background-color: var(--background-gray);
+  color: var(--text40);
+}
+
+.gray {
+  color: var(--text90);
+  background: var(--background-gray);
+}
+
+.gray:hover {
+  background-color: var(--background-gray-hover);
+}
+
+.gray:disabled {
+  background-color: var(--background-gray);
+  color: var(--text40);
+}
+
+.dark-gray {
+  background-color: var(--text20);
+  color: var(--text100);
+}
+
+.dark-gray:hover {
+  background-color: var(--text30);
+}
+
+.white {
+  color: var(--text100);
+  background-color: var(--white);
+}
+
+.white:hover {
+  background-color: var(--background-gray);
+}
+
+.white:disabled {
+  color: var(--text50);
+}
+
+.black {
+  color: var(--white);
+  background-color: var(--text80);
+}
+
+.black:hover {
+  background-color: var(--text90);
+}
+
+.black:disabled {
+  color: var(--text40);
+  background-color: var(--background-gray);
+}
+
+.red {
+  background-color: var(--background-gray);
+  color: var(--dark-pink);
+}
+
+.red:hover {
+  background-color: var(--background-gray-hover);
+}
+
+.red:disabled {
+  background-color: var(--background-gray);
+  color: var(--text40);
+}
+
+.custom {
+}

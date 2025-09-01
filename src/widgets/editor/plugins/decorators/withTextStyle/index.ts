@@ -1,0 +1,1 @@
+export { withTextStyle } from './withTextStyle';

@@ -1,0 +1,20 @@
+.dokably-dash-divider-block__wrapper {
+  width: 100%;
+  height: 20px;
+  position: relative;
+  margin: 5px 0;
+}
+.dash-divider {
+  background-image: url('../../../../../shared/images/dashdivider.svg');
+  height: 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: auto;
+  caret-color: transparent;
+  cursor: pointer;
+}
+
+.dokably-dash-divider-block__wrapper .dokably-context-menu {
+  margin-top: 10px;
+  display: flex;
+}

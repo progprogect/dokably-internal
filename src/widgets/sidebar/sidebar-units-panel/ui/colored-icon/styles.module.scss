@@ -1,0 +1,12 @@
+.colored-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: var(--border-radius);
+
+  font-size: 10px;
+}

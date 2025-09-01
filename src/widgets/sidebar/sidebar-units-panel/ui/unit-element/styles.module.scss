@@ -1,0 +1,27 @@
+.unit-element {
+  position: relative;
+  display: flex;
+  padding-left: 20px;
+  padding-right: 6px;
+  align-items: center;
+  gap: 2px;
+  justify-content: space-between;
+
+  &:focus-within {
+    & .actions {
+      opacity: 1;
+      visibility: visible;
+      width: initial;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &>.actions {
+      opacity: 1;
+      visibility: visible;
+      width: initial;
+    }
+  }
+}

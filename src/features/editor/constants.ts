@@ -1,0 +1,17 @@
+export enum EDITOR_COMMANDS {
+  BACKSPACE = 'backspace',
+  DELETE = 'delete',
+  SPLIT_BLOCK = 'split-block',
+  TAB_COMMAND = 'tab_command',
+  RESET_TYPE_COMMAND = 'reset_type_command',
+  DECREASE_DEPTH_COMMAND = 'decrease_depth_command',
+  BOLD = 'bold',
+  ITALIC = 'italic',
+  UNDERLINE = 'underline',
+  STRIKETHROUGH = 'strikethrough',
+  CODE = 'code',
+  SCROLLER_SHOW = 'scroller_show',
+  INSERT_NEWLINE = 'insert-newline',
+  SOFT_NEWLINE = 'soft-newline',
+  LINK = 'link',
+}

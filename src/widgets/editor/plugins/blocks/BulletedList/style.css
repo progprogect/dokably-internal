@@ -1,0 +1,45 @@
+.dokably-bulleted-list-block {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.dokably-bulleted-list-block__wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.dokably-bulleted-list-block__marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.25rem;
+  min-width: 1.25rem;
+  margin-right: 0.5rem;
+  height: 36px;
+  max-height: 36px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.dokably-bulleted-list-block__editor-block {
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  width: 100%;
+  font-size: 16px;
+  line-height: 28px;
+  position: relative;
+}
+
+.dokably-bulleted-list-block__editor-block:focus {
+  outline: none;
+}
+
+.dokably-bulleted-list-block__editor-block:focus-visible {
+  outline: none;
+}

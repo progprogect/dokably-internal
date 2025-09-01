@@ -1,0 +1,14 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: auto;
+  }
+}

@@ -1,0 +1,52 @@
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+  position: relative;
+
+  :global {
+    .row {
+      align-items: center;
+      flex: 1;
+    }
+  }
+}
+
+.sidebarHeaderLogo {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebarHeaderWorkspaceName {
+  color: var(--text-icons-black);
+  font-family: Euclid Circular A;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  max-width: calc(
+    var(--sidebarWidth) - 76px
+  ); // 10 + 10 padding, 2 icons 20px, 2 gap 8px
+
+  margin-left: 6px;
+}
+
+.sidebarHeaderHideIcon {
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+
+  &:hover {
+    border-radius: var(--border-radius);
+    background: var(--background-gray-hover);
+  }
+}

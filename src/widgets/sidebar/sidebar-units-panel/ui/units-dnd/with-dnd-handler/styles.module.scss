@@ -1,0 +1,31 @@
+@mixin show {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.handler {
+  @include hide;
+
+  &.visible {
+    @include show;
+  }
+
+  &.hidden {
+    @include hide;
+  }
+}
+
+.dnd-element {
+  position: relative;
+
+  &:focus-within .handler,
+  &:hover .handler {
+    opacity: 1;
+    visibility: visible;
+  }
+}

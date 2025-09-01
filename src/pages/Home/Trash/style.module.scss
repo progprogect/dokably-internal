@@ -1,0 +1,47 @@
+.workspace {
+  width: 800px;
+  height: calc(100% - 60px);
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding-bottom: 0px !important;
+}
+
+.title {
+  width: 800px !important;
+}
+
+.trashItemsList {
+  margin-top: 50px;
+  height: calc(100% - 90px);
+  width: 100%;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

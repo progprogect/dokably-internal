@@ -1,0 +1,41 @@
+.icon {
+  flex-shrink: 0;
+  color: var(--primary-hover);
+  margin-right: 0.5rem;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-inline: 1.25rem;
+  padding-block: 1.625rem;
+  color: var(--text90);
+  background-color: var(--text5);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-sm);
+
+  &__text {
+    margin: 0;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__right-content {
+    margin-left: auto;
+  }
+
+  &_disabled {
+    color: var(--text70);
+    cursor: auto;
+
+    .icon {
+      color: var(--text50);
+    }
+  }
+
+  &:hover {
+    border-color: var(--primary-hover);
+  }
+}

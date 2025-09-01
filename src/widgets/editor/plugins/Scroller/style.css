@@ -1,0 +1,61 @@
+.scroller {
+  height: 260px;
+  max-height: 260px;
+  width: 372px;
+  background-color: rgb(255 255 255);
+  --tw-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  --tw-shadow-colored: 0px 4px 20px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  /* padding: 10px; */
+  /* border-radius: var(--border-radius); */
+  border-radius: 8px;
+  overflow-y: scroll;
+  padding: 12px 20px;
+  overscroll-behavior: contain;
+  pointer-events: all;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background-color: #d4d4d5;
+  /* border: 4px solid transparent; */
+  border-radius: var(--border-radius);
+  background-clip: padding-box;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroller__section_header {
+  text-transform: uppercase;
+  color: #a9a9ab;
+  font-size: 10px;
+  font-weight: 500;
+
+  &:not(&:first-child) {
+    margin-top: 18px;
+  }
+}
+
+.secondMenu {
+  max-height: 260px;
+  width: 288px;
+  background-color: rgb(255 255 255);
+  --tw-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  --tw-shadow-colored: 0px 4px 20px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-radius: 8px;
+  padding: 8px;
+  pointer-events: all;
+}
+
+.plugin-adding-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+}

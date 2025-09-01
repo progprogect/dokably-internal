@@ -1,0 +1,21 @@
+.font-size-arrow-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 7.5px;
+}
+
+.font-size-arrow-control {
+  width: 8px;
+  height: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.font-size-arrow-control:hover {
+  background-color: var(--background-dark-hover);
+}

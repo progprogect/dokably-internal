@@ -1,0 +1,22 @@
+.show-submenu {
+  opacity: 1;
+  visibility: visible;
+  width: initial;
+}
+
+.hide-submenu {
+  opacity: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.unit-actions-panel {
+  position: relative;
+  height: 24px;
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -1,0 +1,47 @@
+.cell {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  inset: 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px;
+  gap: 4px;
+}
+
+.cell {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+.active {
+  inset: -1px;
+  border: 1px solid #4a86ff;
+}
+
+.popover {
+  margin-top: 14px;
+}
+
+.date {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  gap: 4px;
+
+  &:hover {
+    .remove {
+      display: block;
+    }
+  }
+}
+
+.remove {
+  display: none;
+  cursor: pointer;
+}

@@ -1,0 +1,35 @@
+.floating-chat-button {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ECF0FB;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+  z-index: 1000;
+  
+  &:hover {
+    // No animations
+  }
+  
+  &:active {
+    // No animations  
+  }
+  
+  &__icon {
+    width: 32px;
+    height: 32px;
+    
+  }
+  
+  // Removed pulse indicator as requested
+  // &__pulse { ... } - removed completely
+}
+
+// Removed all keyframe animations as requested 

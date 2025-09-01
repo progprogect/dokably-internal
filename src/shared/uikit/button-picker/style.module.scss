@@ -1,0 +1,95 @@
+.buttonPicker {
+  position: relative;
+  pointer-events: all;
+  height: 38px;
+  width: 38px;
+
+  border-radius: var(--border-radius);
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--background-gray-hover);
+    color: var(--text-icons-black);
+
+    & > svg > path[stroke] {
+      stroke: var(--text-icons-black);
+    }
+
+    & > svg > path[fill] {
+      fill: var(--text-icons-black);
+    }
+
+    & > svg > rect[stroke] {
+      stroke: var(--text-icons-black);
+    }
+
+    & > svg > rect[fill] {
+      fill: var(--text-icons-black);
+    }
+
+    & > svg > circle[stroke] {
+      stroke: var(--text-icons-black);
+    }
+
+    & > svg > circle[fill] {
+      fill: var(--text-icons-black);
+    }
+  }
+
+  svg {
+    max-height: 22px;
+    max-width: 22px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+
+  img {
+    max-height: 22px;
+    max-width: 22px;
+    cursor: pointer;
+  }
+}
+
+.buttonPicker__outline {
+  @extend .buttonPicker;
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid var(--text40);
+  }
+}
+
+.buttonPickerActive {
+  background-color: var(--background-gray-hover);
+  color: var(--text-icons-black);
+
+  & > svg > path[stroke] {
+    stroke: var(--text-icons-black);
+  }
+
+  & > svg > path[fill] {
+    fill: var(--text-icons-black);
+  }
+}
+
+.list {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 8px;
+
+  box-shadow: var(--box-shadow2);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  z-index: 32;
+}

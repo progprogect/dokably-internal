@@ -1,0 +1,190 @@
+.whiteboard-settings__modal #modal-title {
+  margin-top: calc(35px - 1.25rem) !important;
+  margin-left: calc(40px - 1.25rem) !important;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+
+  color: #3e3e41;
+}
+
+.whiteboard-settings__modal #modal-children-wrapper {
+  padding: 0 !important;
+}
+
+.whiteboard-settings__modal {
+  min-height: 230px;
+  width: 520px;
+}
+
+.whiteboard-settings {
+  min-height: 124px;
+  width: 440px;
+  margin: 20px 20px 0px 20px;
+
+  box-sizing: border-box;
+}
+
+.whiteboard-settings__label {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #949395;
+
+  margin-top: 30px;
+}
+
+.whiteboard-settings__row {
+  display: flex;
+
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.whiteboard-settings__row__whiteboard-icon {
+  width: 20px;
+  height: 20px;
+
+  margin-left: 21px;
+  margin-right: 1px;
+
+  cursor: pointer;
+}
+
+.whiteboard-settings__row__input {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+
+  color: #29282c;
+
+  padding: 13px 16px;
+
+  width: 100%;
+  height: 40px;
+
+  background: #ffffff;
+
+  border: 1px solid #d4d4d5;
+  border-radius: var(--border-radius);
+
+  outline: none;
+}
+
+.whiteboard-settings__row__input:focus-visible {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+
+  color: #29282c;
+
+  padding: 13px 16px;
+
+  width: 100%;
+  height: 40px;
+
+  background: #ffffff;
+
+  border: 1px solid #d4d4d5;
+  border-radius: var(--border-radius);
+
+  outline: none;
+}
+
+.whiteboard-settings__row__access-icon {
+  width: 16px;
+  height: 16px;
+
+  margin-right: 4px;
+}
+
+.whiteboard-settings__row__access-label {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #949395;
+}
+
+.whiteboard-settings__row__access-button {
+  height: 18px;
+
+  padding-top: 5px;
+}
+
+.whiteboard-settings__row__button-row {
+  margin-top: 28px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.whiteboard-settings__divider {
+  height: 1px;
+  width: 100%;
+  background: #eaeaea;
+}
+
+.whiteboard-settings__invite__label {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 14px;
+
+  color: #29282c;
+
+  margin-top: 30px;
+  margin-bottom: 22px;
+}
+
+.whiteboard-settings .invitebyemail__select {
+  width: 260px;
+}
+
+.whiteboard-settings .invitebyemail__select > *:nth-child(3) {
+  border: 1px solid #d4d4d5;
+  border-radius: var(--border-radius);
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #29282c;
+}
+
+.whiteboard-settings .invitebyemail__select #react-select-2-placeholder {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: #29282c;
+  opacity: 0.5;
+}
+
+.whiteboard-settings .invitebyemail__options {
+  min-width: 135px;
+}
+
+.whiteboard-settings .invitebyemail__button {
+  display: none;
+}
+
+.whiteboard-settings .invitebyemail {
+  flex-wrap: wrap;
+  display: flex;
+}

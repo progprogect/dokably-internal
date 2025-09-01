@@ -1,0 +1,49 @@
+// Review Message specific styles extending ChatMessage base styles
+.review-message__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.review-message__copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #E8E8E8;
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #69696B;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  
+  &:hover {
+    border-color: #D1D1D1;
+    background: #F9F9F9;
+  }
+  
+  &:active {
+    background: #F0F0F0;
+  }
+  
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+// Dismiss button positioning modifier (uses same base styles as copy button)
+.review-message__dismiss-offset {
+  margin-left: 72px; // Small offset to position slightly to the right
+}
+
+// Animation for dismissing messages
+.chat-message--dismissing {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.2s ease;
+} 

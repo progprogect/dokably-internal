@@ -1,0 +1,55 @@
+.body-cell-content {
+  display: flex;
+  align-items: center;
+  justify-content: var(--content-align);
+  padding: 4px 8px;
+  height: 100%;
+  position: relative;
+
+  > a {
+    cursor: pointer;
+  }
+  > input {
+    font-size: 12px;
+    width: 100%;
+    border-color: transparent;
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-radius: 4px;
+    outline: 0;
+    cursor: pointer;
+    &[type="checkbox"] {
+      cursor: pointer;
+      accent-color: #29282C;
+    }
+    &[type="number"] {
+      text-align: right;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+    &[class*="email-input"] {
+      padding-right: 20px;
+    }
+    &[class*="checkbox-input"] {
+      position: static;
+      height: auto;
+    }
+  }
+  > div[class*="docLinksWrapper"] {
+    border-radius: 4px;
+  }
+
+  form input {
+    position: static;
+  }
+
+	&:hover {
+		div[class*="mailIcon"] {
+			display: block;
+		}
+	}
+}

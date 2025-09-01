@@ -1,0 +1,137 @@
+.sidebarUnitsPanel {
+  flex: 1;
+
+  margin-top: 30px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  border-width: 0px !important;
+  outline-width: 0 !important;
+  outline: none !important;
+  position: relative;
+}
+
+.sidebarUnitsPanelRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  position: relative;
+
+  padding-left: 12px;
+  padding-right: 6px;
+
+  height: 34px;
+  width: 100%;
+
+  font-family: Euclid Circular A;
+  font-size: 15px;
+  font-style: normal;
+  line-height: 16px;
+}
+
+.sidebarUnitsPanelChannelTitle {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-icons-black);
+}
+
+.sidebarUnitsPanelRowDisable {
+  @extend .sidebarUnitsPanelRow;
+  color: var(--text40);
+
+  &>svg path {
+    stroke: var(--text40);
+  }
+
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.sidebarUnitsPanelTree {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 2px;
+  height: 0px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+:global {
+  .tree-node-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .tree-branch-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    border: none;
+
+    &:focus-visible {
+      outline: none !important;
+    }
+  }
+}
+
+@mixin visible {
+  opacity: 1;
+  visibility: visible;
+  width: initial;
+}
+
+.sidebarUnitsPanelTreeNode {
+  position: relative;
+  display: flex;
+  padding-left: 20px;
+  padding-right: 6px;
+  align-items: center;
+  gap: 2px;
+  justify-content: space-between;
+
+  &:focus-within {
+    & .sidebarUnitsPanelTreeNodeActions {
+      @include visible();
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &>.sidebarUnitsPanelTreeNodeActions {
+      @include visible();
+    }
+  }
+}
+
+
+.sidebarTopActionsButtonNewMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  top: 30px;
+  right: -7px;
+
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  z-index: var(--zIndexModals);
+}

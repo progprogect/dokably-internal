@@ -1,0 +1,17 @@
+.dokably-banner-block__wrapper {
+  background: #ecf0fb;
+  border-radius: 4px;
+  padding: 12px 12px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.banner-text {
+  font-family: 'Euclid Circular A', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1em;
+  color: #949395;
+  background: transparent;
+}

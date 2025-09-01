@@ -1,0 +1,29 @@
+.comment__panel {
+  width: 320px;
+  height: calc(100vh - 132px);
+  box-shadow: var(--box-shadow3);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: fixed;
+  z-index: 1001;
+}
+
+.comment__panel::-webkit-scrollbar-thumb {
+  background-color: var(--text20);
+  border-radius: var(--border-radius);
+  background-clip: padding-box;
+  width: 1px !important;
+}
+
+.comment__panel::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.comments__header {
+  color: var(--text-icons-black, var(--sticky-note-black, #29282c));
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 17px 0px 17px 20px;
+}

@@ -1,0 +1,23 @@
+.dokably-image-block {
+  width: var(--text-editor-row-width);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.dokably-image-block:hover > .dokably-context-menu {
+  display: flex;
+  margin-top: 10px;
+}
+
+.dokably-image-block__upload {
+  width: var(--text-editor-row-width);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.dokably-image-block__upload:hover > .dokably-context-menu {
+  display: flex;
+  margin-top: 10px;
+}

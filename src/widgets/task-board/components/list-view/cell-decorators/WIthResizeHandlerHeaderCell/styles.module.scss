@@ -1,0 +1,17 @@
+.resize-handler {
+  position: absolute;
+  right: -3px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  opacity: 0;
+  z-index: 1;
+  background-color: var(--background-dark-blue-hover);
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+}

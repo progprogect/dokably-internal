@@ -1,0 +1,17 @@
+.mailIcon {
+	display: none;
+	position: absolute;
+	right: 3px;
+	top: 11px;
+	border: 1.2px solid #EAEAEA;
+	border-radius: 6px;
+	padding: 2px;
+	background-color: #fff;
+	&:hover {
+		background-color: #EDEDEE;
+		cursor: pointer;
+		a, svg {
+			cursor: pointer;
+		}
+	}
+}

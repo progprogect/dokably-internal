@@ -1,0 +1,37 @@
+.ql-container,
+.ql-container > * {
+  font-size: var(--ql-fontSize, 10);
+  font-family: var(--ql-fontFamily, 'Euclid Circular A');
+  display: flex;
+  flex-direction: column !important;
+  align-items: var(--ql-horizontalAlign) !important;
+  justify-content: var(--ql-verticalAlign) !important;
+  text-align: var(--ql-horizontalAlign, center) !important;
+}
+
+.ql-container > * > p {
+  text-align: var(--ql-child-horizontalAlign, center);
+}
+
+.ql-editor {
+  line-height: var(--ql-line-height, '24px') !important;
+}
+
+.ql-editor p {
+  max-width: 100%;
+  min-width: 16px;
+}
+
+.limitedBounds p {
+  max-width: 100%;
+}
+
+.ql-editor.ql-blank::before {
+  color: #A9A9AB !important;
+  font-style: normal !important;
+  left: 0px !important;
+  right: 0px !important;
+  font-size: var(--ql-fontSize, 10) !important;
+  font-family: var(--ql-fontFamily, 'Euclid Circular A') !important;
+  white-space: nowrap;
+}

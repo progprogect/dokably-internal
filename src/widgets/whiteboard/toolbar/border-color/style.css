@@ -1,0 +1,35 @@
+.border-color-button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--text-color-button);
+
+  cursor: pointer;
+}
+
+.current-color-button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border-color: var(--text-color-button);
+  border-width: 1px;
+
+  cursor: pointer;
+}
+
+.border-color-button__wrapper {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.border-color-button__wrapper:hover,
+.border-color-button__active {
+  box-shadow: 0 0 0 1px var(--text-color-button);
+}

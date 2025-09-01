@@ -1,0 +1,41 @@
+
+.wrapper {
+	display: flex;
+	label {
+		font-size: 14px;
+		color: #949395;
+		font-weight: 500;
+	}
+}
+
+.input {
+	color: #29282C;
+	border: 1px solid #D4D4D5;
+	border-radius: 8px;
+	padding: 13px 16px;
+	width: 120px;
+	margin-top: 6px;
+	&.inputCardNumber {
+		width: 260px;
+	}
+}
+
+.buttonsWrapper {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 12px;
+	.button {
+		color: #3E3E41;
+		background-color: #F7F7F8;
+		font-size: 14px;
+		font-weight: 500;
+		border-radius: 8px;
+		margin-left: 12px;
+		height: 40px;
+		width: 86px;
+		&.saveButton {
+			color: #fff;
+			background-color: #6598FF;
+		}
+	}
+}

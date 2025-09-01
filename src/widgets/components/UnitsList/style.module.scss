@@ -1,0 +1,44 @@
+.unitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding-top: 50px;
+}
+
+.unitsListItem {
+  width: var(--text-editor-row-width);
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  padding: 2px;
+
+  background-color: #f7f7f8;
+  &:hover {
+    background-color: #ededee;
+  }
+}
+
+.unitsListItemIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.unitsListItemTitle {
+  width: calc(var(--text-editor-row-width) - 16px - 6px - 8px - 4px - 6px);
+  font-size: 14px;
+  line-height: 16px;
+  color: rgb(105 105 107);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

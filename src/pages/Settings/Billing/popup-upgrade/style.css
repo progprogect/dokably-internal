@@ -1,0 +1,411 @@
+.popup__window {
+  border-radius: 16px;
+  background: var(--white);
+  /* width: 972px; */
+  height: 740px;
+  z-index: 100;
+  margin: auto;
+  display: flex;
+}
+
+.popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  z-index: 100;
+  left: 0;
+  top: 0;
+}
+
+.popup form {
+  margin: auto;
+  position: relative;
+}
+
+.popup__info {
+  border-right: 1px solid var(--text10);
+  width: 612px;
+  padding: 40px 0px 0px 40px;
+}
+
+.popup__logo {
+  margin-bottom: 30px;
+}
+
+.popup__offertxt {
+  color: var(--text90);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  margin-bottom: 9px;
+}
+
+.popup__description {
+  color: var(--text70);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 46px;
+}
+
+.popup__close {
+  margin: 20px 0px 4px 0;
+}
+
+.popup__totalprice {
+  padding-left: 29px;
+  padding-right: 40px;
+}
+
+.popup__sum {
+  color: var(--text100);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  margin-bottom: 22px;
+}
+
+.popup__plandetails {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup__plandetails_header {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  margin-bottom: 3px;
+}
+
+.popup__plandetails_txt {
+  color: var(--text50);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__orderdetails {
+  padding-right: 10px;
+}
+
+.popup__firstprice {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__discount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.popup__discount_txt {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__discount_precent {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__border {
+  /* width: 300px; */
+  height: 1px;
+  background: var(--text10);
+  margin-bottom: 22px;
+}
+
+.popup__total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.popup__total_txt {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__total_price {
+  color: var(--text100);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.popup__sumbit {
+  font-size: 14px;
+  width: 100%;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  background-color: #6598FF;
+  color: white;
+  border-radius: 8px;
+}
+.popup__sumbit[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.popup__guarantee {
+  color: var(--text60);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  column-gap: 4px;
+}
+
+.popup__timeoptions_txt {
+  color: var(--text50);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+  margin-bottom: 8px;
+}
+
+.popup__timeoptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: center;
+  margin-bottom: 30px;
+}
+
+.popup__paymentmethod_header {
+  color: var(--text50);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+  margin-bottom: 16px;
+}
+
+.popup__paymentmethod_cardlist {
+  display: flex;
+  column-gap: 14px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.cardlist__txt {
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.cardlist__logos {
+  display: flex;
+  column-gap: 6px;
+}
+
+.popup__userinfo {
+  display: flex;
+  column-gap: 12px;
+  margin-bottom: 30px;
+}
+
+.popup__userinput {
+  width: 260px;
+  height: 40px;
+}
+
+.input__wrapper {
+  height: 60px;
+  overflow-y: visible;
+  z-index: 100;
+}
+
+.popup__form-txt {
+  color: var(--text50);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+  margin-bottom: 8px;
+}
+
+.popup__form-cardinfo {
+  display: flex;
+  column-gap: 12px;
+}
+
+.popup__card {
+  width: 124px;
+  text-align: center;
+}
+
+.popup__card_date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 5px;
+  padding: 0px 0px 0px 7px;
+  align-self: center;
+}
+
+.popup__card_date-input {
+  display: inline;
+  width: 30px;
+  margin: 0;
+  outline: none;
+  line-height: 14px;
+  padding: 0;
+  height: 40px;
+}
+.popup__card_date-input-first {
+  display: inline;
+  width: 40px;
+  margin: 0;
+  outline: none;
+  line-height: 14px;
+  padding-left: 10px;
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid var(--text10);
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  align-self: flex-start;
+  text-align: center;
+  background: transparent;
+  margin-right: -2px;
+}
+
+.popup__card_date-input-second {
+  display: inline;
+  width: 50px;
+  height: 40px;
+  margin: 0;
+  outline: none;
+  line-height: 14px;
+  padding: 0;
+  margin-left: -10px;
+  text-align: center;
+  font-size: 14px;
+  border-left: none;
+  align-self: flex-end;
+  border-radius: 0 5px 5px 0;
+  background: transparent;
+}
+.popup__card_date-input-second:hover {
+  border: 1px solid var(--text10);
+  border-left: none;
+}
+
+.popup__card_date-input-second:active {
+  border: 1px solid var(--text10);
+  border-left: none;
+}
+
+.popup__card_date-input-second:focus {
+  border: 1px solid var(--text10);
+  border-left: none;
+}
+
+.popup__card_date-slash {
+  color: var(--text40);
+  border: 1px solid var(--text10);
+  border-left: none;
+  border-right: none;
+  padding: 7px 0 7px 5px;
+  align-self: flex-start;
+}
+
+.popup__card_date-slash-free {
+  color: var(--text40);
+  border: 1px solid var(--text10);
+  border-left: none;
+  border-right: none;
+  padding: 7px 0 7px 5px;
+  align-self: flex-start;
+  z-index: 100;
+}
+
+.popup__dropdown-free {
+  display: flex;
+  padding: 13px 16px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--text20);
+  background: var(--white);
+  width: 300px;
+  height: 40px;
+  color: var(--text100);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.popup__dropdown_countries-free {
+  width: 260px;
+  background-color: var(--text5);
+  border: 1px solid var(--text10);
+  height: 40px;
+  border-radius: 5px;
+  color: var(--text40);
+}
+
+.popup__card_date-input-first-free {
+  display: inline;
+  width: 40px;
+  margin: 0;
+  outline: none;
+  line-height: 14px;
+  padding-left: 10px;
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid var(--text10);
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  align-self: flex-start;
+  text-align: center;
+  background: var(--text5);
+  color: var(--text40);
+  margin-right: -3px;
+}
+
+.loader-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+}

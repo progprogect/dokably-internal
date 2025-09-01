@@ -1,0 +1,1 @@
+export { withStaticReadonly } from './withStaticReadonly';

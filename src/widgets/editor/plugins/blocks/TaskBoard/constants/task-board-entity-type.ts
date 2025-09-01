@@ -1,0 +1,1 @@
+export const TASK_BOARD_ENTITY = 'TASK_BOARD_ENTITY';

@@ -1,0 +1,29 @@
+.share {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--white);
+
+  border-radius: var(--border-radius);
+
+  background-color: var(--background-dark-blue-hover);
+
+  border: none;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 34px;
+  padding: 0px 12px;
+
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background: var(--link-color);
+  }
+}

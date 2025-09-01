@@ -1,0 +1,89 @@
+.wrapper {
+  max-width: 800px;
+  width: 100%;
+  min-height: 64px;
+  background: #f7f7f8;
+  border-radius: var(--border-radius);
+
+  padding: 0px 10px 0px 26px;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+  margin-right: 10px;
+
+  & > svg > path {
+    stroke: #7f7e80;
+  }
+}
+
+.title {
+  width: calc(var(--text-editor-row-width) - 10px - 26px - 16px - 10px - 206px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #69696b;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.restore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+
+  gap: 4px;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--text90);
+
+  user-select: none;
+
+  cursor: pointer;
+}
+
+.deleteForever {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116px;
+
+  gap: 4px;
+
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff5065;
+
+  user-select: none;
+
+  cursor: pointer;
+
+  & > svg > path {
+    stroke: #ff5065;
+  }
+}

@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+}
+
+.message {
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 20px;
+  color: var(--text70);
+}
+
+.unitName {
+  margin-top: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--dark-pink);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

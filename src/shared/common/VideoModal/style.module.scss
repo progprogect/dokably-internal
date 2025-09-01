@@ -1,0 +1,32 @@
+.reactModalComponent {
+  background-color: rgba(41, 40, 44, 0.3);
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+
+  position: relative;
+}
+
+.actions {
+  position: absolute;
+
+  display: flex;
+  justify-content: flex-end;
+
+  top: 26px;
+  right: 26px;
+
+  cursor: pointer;
+}
+
+.video {
+  height: 460px;
+  width: 820px;
+
+  background-color: black;
+}

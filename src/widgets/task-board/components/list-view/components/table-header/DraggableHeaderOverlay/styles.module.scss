@@ -1,0 +1,13 @@
+.header-cell {
+	opacity: 0.5;
+	background-color: var(--light-blue);
+	outline: 1px solid;
+	outline-color: var(--primary-hover);
+	button > span {
+    background-color: var(--background-dark-blue-hover) !important;
+    color: var(--light-blue) !important;
+	}
+	button > div {
+		background-color: var(--light-blue) !important;
+	}
+}

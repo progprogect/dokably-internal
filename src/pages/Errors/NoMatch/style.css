@@ -1,0 +1,35 @@
+.no-match {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-match__container {
+  display: flex;
+}
+
+.no-match__info {
+  margin-left: 32px;
+}
+
+.no-match__info__message {
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 34px;
+
+  display: flex;
+  align-items: flex-end;
+
+  color: #29282c;
+
+  height: 102px;
+  width: 225px;
+}
+
+.no-match__info__button {
+  margin-top: 25px;
+}

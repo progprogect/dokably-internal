@@ -1,0 +1,36 @@
+.action-button {
+  position: absolute;
+  left: -14px;
+  top: 0;
+  z-index: 1;
+  width: 14px;
+  height: calc(100% + 2px);
+  margin-top: -1px;
+  color: var(--text40);
+  background-color: var(--background-gray);
+
+  // &:hover,
+  // &:focus-within {
+  //   border-color: var(--text20);
+  //   background-color: var(--text20);
+  //   opacity: 1;
+
+  //   .icon {
+  //     opacity: 1;
+  //   }
+  // }
+
+  &.active {
+    border-color: var(--primary-hover);
+    background-color: var(--primary-hover);
+    color: white;
+
+    .icon {
+      opacity: 1;
+    }
+  }
+}
+
+.icon {
+  opacity: 0;
+}

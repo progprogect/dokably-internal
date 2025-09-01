@@ -1,0 +1,9 @@
+import { BaseBoxShapeTool } from '@tldraw/editor';
+import { CUSTOM_RECTANGLE_SHAPE_ID } from '@app/constants/whiteboard/shape-ids';
+
+export class CustomRectangleTool extends BaseBoxShapeTool {
+  static override id = CUSTOM_RECTANGLE_SHAPE_ID;
+  static override initial = 'idle';
+
+  override shapeType = CUSTOM_RECTANGLE_SHAPE_ID;
+}

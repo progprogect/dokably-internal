@@ -1,0 +1,35 @@
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--text20);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox:checked::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 8px;
+  border: solid var(--text100);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox:checked {
+  background-color: white;
+  border: 1px solid var(--text100);
+}
+
+.actionCheckboxLabel {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

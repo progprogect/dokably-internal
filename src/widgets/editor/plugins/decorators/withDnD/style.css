@@ -1,0 +1,75 @@
+.draggable__anchor {
+  cursor: url('https://www.google.com/intl/en_ALL/mapfiles/openhand.cur'), all-scroll;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: -o-grab;
+  cursor: -ms-grab;
+  cursor: grab;
+}
+
+.draggable {
+  min-width: 746px;
+
+  left: -26px;
+  padding-left: 26px;
+}
+
+#draggable__delimiter {
+  width: var(--text-editor-row-width);
+  height: 2px;
+
+  background-color: #4a86ff;
+
+  position: fixed;
+  top: -2000px;
+  left: -200px;
+
+  display: flex;
+  align-items: center;
+}
+
+#draggable__delimiter::before {
+  content: '';
+  height: 12px;
+  width: 12px;
+  position: absolute;
+  left: 0;
+  background-color: #4a86ff;
+  border-radius: 50%;
+}
+
+.draggable__anchor {
+  position: absolute;
+  margin-top: 5px;
+  left: 0px;
+
+  display: none;
+}
+
+.draggable:has(span[data-text='true']):hover  .draggable__anchor {
+  display: block;
+}
+
+/* Show drag handle for atomic blocks (non-text blocks like video, images, etc.) */
+.draggable:has([contenteditable="false"]):hover .draggable__anchor {
+  display: block;
+}
+
+.draggable__content {
+  width: var(--text-editor-row-width);
+  position: relative;
+}
+
+.divider_menu__container {
+  width: 176px;
+  box-shadow: 0px 0px 8px 0px #7f7e804d;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  position: absolute;
+  background: #ffffff;
+  z-index: 3;
+  caret-color: transparent;
+  cursor: pointer;
+}

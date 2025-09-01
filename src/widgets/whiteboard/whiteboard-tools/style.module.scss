@@ -1,0 +1,6 @@
+.whiteboardToolsLayout {
+  position: absolute;
+  inset: 0px;
+  z-index: var(--zIndexWhiteboard);
+  pointer-events: none;
+}

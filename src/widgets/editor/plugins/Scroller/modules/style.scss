@@ -1,0 +1,25 @@
+.divider_submenu__container {
+  background-color: #ffffff;
+  position: absolute;
+  top: 135px;
+  right: -95px;
+  width: 176px;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0px 0px 8px 0px #7f7e804d;
+}
+
+.divider_submenu__item {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: #ededee;
+    cursor: pointer;
+  }
+}

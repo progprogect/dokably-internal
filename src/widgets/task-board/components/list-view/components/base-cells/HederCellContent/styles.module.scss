@@ -1,0 +1,12 @@
+.header-cell-content {
+  padding: 0.5rem;
+  color: var(--text40);
+  font-weight: normal;
+  font-size: 0.625rem;
+  display: flex;
+  justify-content: var(--content-align);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
