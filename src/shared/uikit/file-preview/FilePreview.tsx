@@ -1,6 +1,7 @@
 import { FilePreviewProps, FiltType } from './props';
 import { ReactComponent as DocumentIcon } from '@shared/images/icons/document.svg';
 import { ReactComponent as PdfIcon } from '@shared/images/icons/pdf.svg';
+import { ReactComponent as VideoIcon } from '@shared/images/icons/video-play.svg';
 import { ReactComponent as AttachIcon } from '@shared/images/icons/attach.svg';
 import { ReactComponent as ReloadIcon } from '@shared/images/icons/reload.svg';
 import { cn } from '@app/utils/cn';
@@ -16,6 +17,12 @@ const getFileIcon = (fileType: FiltType) => {
       return DocumentIcon;
     case 'pdf':
       return PdfIcon;
+    case 'mp4':
+    case 'webm':
+    case 'mov':
+    case 'avi':
+    case 'mpeg':
+      return VideoIcon;
     default:
       return AttachIcon;
   }

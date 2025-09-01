@@ -322,7 +322,7 @@ function UploadButton({
         onChange={
           ((e: FileInputChangeEvent): void => {
             const input = e.target;
-            const files = Array.from(input.files ?? undefined ?? []);
+            const files = Array.from(input.files ?? []);
             if (files.length > 0) {
               onUpload(files);
             }

@@ -230,8 +230,8 @@ const PenSettings = () => {
   };
 
   const handleChangeSize = (size: number) => {
-    editor.setStyleForNextShapes(DokablyPenSize, size);
-    editor.setStyleForNextShapes(DokablyHighlightSize, size);
+    editor.setStyleForNextShapes(DokablyPenSize as any, size);
+    editor.setStyleForNextShapes(DokablyHighlightSize as any, size);
   };
 
   return (
