@@ -101,7 +101,6 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const insertMentionTrigger = () => {
     // Отключаем функционал упоминаний для гостей
     if (isGuest) return;
-    
     // const el = inputRef.current;
     // if (!el) return;
     // const nativeInputValueSetter = (Object as any).getOwnPropertyDescriptor(
@@ -147,42 +146,47 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
           }
         }}
       >
-        <MentionsInput
-          inputRef={inputRef}
-          value={commentMessage}
-          style={isLast ? { ...mentionInputStyles, suggestions: {
-            ...mentionInputStyles.suggestions,
-            list: {
-              ...mentionInputStyles.suggestions.list,
-              bottom: "calc(100% + 20px)"
-            }
-          }} : mentionInputStyles}
-          placeholder='Add a comment...'
-          onChange={(e) => setCommentMessage(e.target.value)}
-          onFocus={(e) => {
-            if (preserveSelection) {
-              e.preventDefault();
-            }
-          }}
-        >
-          {/* Скрываем Mention компонент для гостей */}
-          {!isGuest ? (
+        {!isGuest ? (
+          <MentionsInput
+            inputRef={inputRef}
+            value={commentMessage}
+            style={isLast ? { ...mentionInputStyles, suggestions: {
+              ...mentionInputStyles.suggestions,
+              list: {
+                ...mentionInputStyles.suggestions.list,
+                bottom: "calc(100% + 20px)"
+              }
+            }} : mentionInputStyles}
+            placeholder='Add a comment...'
+            onChange={(e) => setCommentMessage(e.target.value)}
+            onFocus={(e) => {
+              if (preserveSelection) {
+                e.preventDefault();
+              }
+            }}
+          >
             <Mention
               data={unitMembersQueryResult.data ?? []}
               trigger={'@'}
               style={mentionStyles}
               markup=',!__display__,!'
             />
-          ) : (
-            // Для гостей передаем пустой массив, чтобы упоминания не работали
-            <Mention
-              data={[]}
-              trigger={'@'}
-              style={mentionStyles}
-              markup=',!__display__,!'
-            />
-          )}
-        </MentionsInput>
+          </MentionsInput>
+        ) : (
+          // Для гостей используем обычный input без функционала упоминаний
+          <input
+            ref={inputRef}
+            value={commentMessage}
+            placeholder='Add a comment...'
+            onChange={(e) => setCommentMessage(e.target.value)}
+            onFocus={(e) => {
+              if (preserveSelection) {
+                e.preventDefault();
+              }
+            }}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        )}
       </div>
       <div className={styles['input__bottom']}>
         {/* Скрываем кнопку mention для гостей */}
