@@ -36,9 +36,6 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const { documentId } = useParams();
   const { activeWorkspace } = useWorkspaceContext();
 
-  // Определяем, является ли пользователь гостем
-  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
-
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
     enabled: !_.isNil(documentId),
     select: selectMembersForSuggestions,
@@ -70,6 +67,17 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onCancel]);
+
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
+
+  // Отладочная информация (можно убрать после тестирования)
+  console.log('CommentsInput Debug:', {
+    userRole: activeWorkspace?.userRole,
+    userEmail: user?.email,
+    isGuest,
+    hasActiveWorkspace: !!activeWorkspace
+  });
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -145,48 +153,48 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
             e.stopPropagation();
           }
         }}
-      >
-        {!isGuest ? (
-          <MentionsInput
-            inputRef={inputRef}
-            value={commentMessage}
-            style={isLast ? { ...mentionInputStyles, suggestions: {
-              ...mentionInputStyles.suggestions,
-              list: {
-                ...mentionInputStyles.suggestions.list,
-                bottom: "calc(100% + 20px)"
-              }
-            }} : mentionInputStyles}
-            placeholder='Add a comment...'
-            onChange={(e) => setCommentMessage(e.target.value)}
-            onFocus={(e) => {
-              if (preserveSelection) {
-                e.preventDefault();
-              }
-            }}
-          >
-            <Mention
-              data={unitMembersQueryResult.data ?? []}
-              trigger={'@'}
-              style={mentionStyles}
-              markup=',!__display__,!'
+              >
+          {!isGuest ? (
+            <MentionsInput
+              inputRef={inputRef}
+              value={commentMessage}
+              style={isLast ? { ...mentionInputStyles, suggestions: {
+                ...mentionInputStyles.suggestions,
+                list: {
+                  ...mentionInputStyles.suggestions.list,
+                  bottom: "calc(100% + 20px)"
+                }
+              }} : mentionInputStyles}
+              placeholder='Add a comment...'
+              onChange={(e) => setCommentMessage(e.target.value)}
+              onFocus={(e) => {
+                if (preserveSelection) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <Mention
+                data={unitMembersQueryResult.data ?? []}
+                trigger={'@'}
+                style={mentionStyles}
+                markup=',!__display__,!'
+              />
+            </MentionsInput>
+          ) : (
+            // Для гостей используем обычный input без функционала упоминаний
+            <input
+              ref={inputRef}
+              value={commentMessage}
+              placeholder='Add a comment...'
+              onChange={(e) => setCommentMessage(e.target.value)}
+              onFocus={(e) => {
+                if (preserveSelection) {
+                  e.preventDefault();
+                }
+              }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-          </MentionsInput>
-        ) : (
-          // Для гостей используем обычный input без функционала упоминаний
-          <input
-            ref={inputRef}
-            value={commentMessage}
-            placeholder='Add a comment...'
-            onChange={(e) => setCommentMessage(e.target.value)}
-            onFocus={(e) => {
-              if (preserveSelection) {
-                e.preventDefault();
-              }
-            }}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        )}
+          )}
       </div>
       <div className={styles['input__bottom']}>
         {/* Скрываем кнопку mention для гостей */}
