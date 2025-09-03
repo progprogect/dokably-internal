@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import FloatingChatButton from '@shared/uikit/floating-chat-button';
 import { ChatPanel } from '@shared/uikit/chat-panel';
 import { useWorkspaceContext } from '@app/context/workspace/context';
+import useUser from '@app/hooks/useUser';
 import './ChatGPTAssistant.scss';
 
 interface ChatGPTAssistantProps {
@@ -12,9 +13,13 @@ interface ChatGPTAssistantProps {
 const ChatGPTAssistant: React.FC<ChatGPTAssistantProps> = ({ className = '' }) => {
   const { activeWorkspace } = useWorkspaceContext();
   const { documentId } = useParams(); // Extract unitId from URL
+  const user = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const [documentContent, setDocumentContent] = useState('');
   const [documentTitle, setDocumentTitle] = useState('');
+
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -98,8 +103,8 @@ const ChatGPTAssistant: React.FC<ChatGPTAssistantProps> = ({ className = '' }) =
     };
   }, [activeWorkspace?.id]);
 
-  // Don't render if no active workspace
-  if (!activeWorkspace?.id) {
+  // Don't render if no active workspace or if user is a guest
+  if (!activeWorkspace?.id || isGuest) {
     return null;
   }
 
