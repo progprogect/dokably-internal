@@ -36,37 +36,9 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const { documentId } = useParams();
   const { activeWorkspace } = useWorkspaceContext();
 
-  // Проверяем, является ли пользователь гостем (anonymous)
-  const isGuestUser = user?.email === 'anonymous';
-
-  // Отладочная информация
-  console.log('CommentsInput Debug:', {
-    user,
-    userEmail: user?.email,
-    isGuestUser,
-    hasUser: !!user,
-    userType: typeof user,
-    userKeys: user ? Object.keys(user) : 'no user',
-    documentId,
-    activeWorkspace,
-    // Добавляем информацию о пропсах
-    preserveSelection,
-    onCancel: !!onCancel,
-    isLast
-  });
-
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
-    enabled: !_.isNil(documentId), // Временно включаем для всех
-    select: selectMembersForSuggestions,
-  });
-
-  // Отладочная информация о запросе участников
-  console.log('Unit Members Query Debug:', {
     enabled: !_.isNil(documentId),
-    documentId,
-    data: unitMembersQueryResult.data,
-    isLoading: unitMembersQueryResult.isLoading,
-    error: unitMembersQueryResult.error
+    select: selectMembersForSuggestions,
   });
 
   // Автофокус только если не нужно сохранять selection
@@ -96,6 +68,9 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onCancel]);
 
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!user) return;
@@ -124,6 +99,18 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   };
 
   const insertMentionTrigger = () => {
+    // Отключаем функционал упоминаний для гостей
+    if (isGuest) return;
+    // const el = inputRef.current;
+    // if (!el) return;
+    // const nativeInputValueSetter = (Object as any).getOwnPropertyDescriptor(
+    //   Object.getPrototypeOf(el),
+    //   'value'
+    // ).set;
+    // nativeInputValueSetter.call(el, '@');
+    // const inputEvent = new Event('keydown', { bubbles: true });
+    // el.dispatchEvent(inputEvent);
+    // el.focus();
     const el = inputRef.current;
     if (!el) return;
     const cursorPos = el.selectionStart || 0;
@@ -158,56 +145,67 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
             e.stopPropagation();
           }
         }}
-      >
-        {/* Временно показываем MentionsInput для всех пользователей */}
-        <MentionsInput
-          inputRef={inputRef}
-          value={commentMessage}
-          style={isLast ? { ...mentionInputStyles, suggestions: {
-            ...mentionInputStyles.suggestions,
-            list: {
-              ...mentionInputStyles.suggestions.list,
-              bottom: "calc(100% + 20px)"
-            }
-          }} : mentionInputStyles}
-          placeholder='Add a comment...'
-          onChange={(e) => setCommentMessage(e.target.value)}
-          onFocus={(e) => {
-            if (preserveSelection) {
-              e.preventDefault();
-            }
-          }}
-        >
-          <Mention
-            data={unitMembersQueryResult.data ?? []}
-            trigger={'@'}
-            style={mentionStyles}
-            markup=',!__display__,!'
-          />
-        </MentionsInput>
+              >
+          {!isGuest ? (
+            <MentionsInput
+              inputRef={inputRef}
+              value={commentMessage}
+              style={isLast ? { ...mentionInputStyles, suggestions: {
+                ...mentionInputStyles.suggestions,
+                list: {
+                  ...mentionInputStyles.suggestions.list,
+                  bottom: "calc(100% + 20px)"
+                }
+              }} : mentionInputStyles}
+              placeholder='Add a comment...'
+              onChange={(e) => setCommentMessage(e.target.value)}
+              onFocus={(e) => {
+                if (preserveSelection) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <Mention
+                data={unitMembersQueryResult.data ?? []}
+                trigger={'@'}
+                style={mentionStyles}
+                markup=',!__display__,!'
+              />
+            </MentionsInput>
+          ) : (
+            // Для гостей используем обычный input без функционала упоминаний
+            <input
+              ref={inputRef}
+              value={commentMessage}
+              placeholder='Add a comment...'
+              onChange={(e) => setCommentMessage(e.target.value)}
+              onFocus={(e) => {
+                if (preserveSelection) {
+                  e.preventDefault();
+                }
+              }}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          )}
       </div>
       <div className={styles['input__bottom']}>
-        {/* Принудительно показываем кнопку @ для отладки */}
-        <button
-          className={styles['mention__button']}
-          type='button'
-          onClick={() => {
-            console.log('Mention button clicked!');
-            insertMentionTrigger();
-            if (!preserveSelection) {
-              inputRef.current?.focus();
-            }
-          }}
-          style={{ 
-            border: '2px solid red',
-            backgroundColor: 'yellow',
-            padding: '8px',
-            margin: '4px'
-          }} // Яркая отладочная рамка
-        >
-          <MentionIcon />
-          <span style={{ marginLeft: '4px', fontSize: '12px' }}>@</span>
-        </button>
+        {/* Кнопка @ отображается только для не-гостей */}
+        {!isGuest && (
+          <button
+            className={styles['mention__button']}
+            type='button'
+            onClick={() => {
+              insertMentionTrigger();
+              if (!preserveSelection) {
+                inputRef.current?.focus();
+              }
+            }}
+            title="Упомянуть пользователя"
+            aria-label="Упомянуть пользователя"
+          >
+            <MentionIcon />
+          </button>
+        )}
         <button
           type='submit'
           className={styles['comment-button']}

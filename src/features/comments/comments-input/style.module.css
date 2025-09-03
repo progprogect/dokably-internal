@@ -72,27 +72,42 @@ strong {
   border-top: 1px solid var(--text5);
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Добавляем выравнивание по центру */
+  align-items: center;
 }
 
 .mention__button {
   margin-left: 6px;
-  padding: 5px;
-  /* Принудительные стили для отладки */
-  display: flex !important;
+  padding: 6px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  min-height: 32px;
-  background-color: #f0f0f0;
-  border: 2px solid #ff0000;
-  border-radius: 4px;
+  min-width: 28px;
+  min-height: 28px;
+  background-color: var(--background-gray);
+  border: 1px solid var(--text10);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text70);
 }
 
 .mention__button:hover {
-  background-color: var(--text5);
-  border-radius: var(--border-radius);
+  background-color: var(--background-gray-hover);
+  border-color: var(--text30);
+  color: var(--text80);
+  transform: translateY(-1px);
+  box-shadow: var(--box-shadow);
+}
+
+.mention__button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.mention__button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
 .comment__input_mention {
