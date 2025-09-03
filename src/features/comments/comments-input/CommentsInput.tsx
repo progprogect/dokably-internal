@@ -46,12 +46,23 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
     isGuestUser,
     hasUser: !!user,
     userType: typeof user,
-    userKeys: user ? Object.keys(user) : 'no user'
+    userKeys: user ? Object.keys(user) : 'no user',
+    documentId,
+    activeWorkspace
   });
 
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
-    enabled: !_.isNil(documentId) && !isGuestUser, // Отключаем запрос для гостей
+    enabled: !_.isNil(documentId), // Временно включаем для всех
     select: selectMembersForSuggestions,
+  });
+
+  // Отладочная информация о запросе участников
+  console.log('Unit Members Query Debug:', {
+    enabled: !_.isNil(documentId),
+    documentId,
+    data: unitMembersQueryResult.data,
+    isLoading: unitMembersQueryResult.isLoading,
+    error: unitMembersQueryResult.error
   });
 
   // Автофокус только если не нужно сохранять selection
@@ -144,52 +155,35 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
           }
         }}
       >
-        {isGuestUser ? (
-          // Для гостей используем обычный input без функциональности упоминаний
-          <input
-            ref={inputRef}
-            type="text"
-            value={commentMessage}
-            placeholder='Add a comment...'
-            onChange={(e) => setCommentMessage(e.target.value)}
-            onFocus={(e) => {
-              if (preserveSelection) {
-                e.preventDefault();
-              }
-            }}
-            className="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        {/* Временно показываем MentionsInput для всех пользователей */}
+        <MentionsInput
+          inputRef={inputRef}
+          value={commentMessage}
+          style={isLast ? { ...mentionInputStyles, suggestions: {
+            ...mentionInputStyles.suggestions,
+            list: {
+              ...mentionInputStyles.suggestions.list,
+              bottom: "calc(100% + 20px)"
+            }
+          }} : mentionInputStyles}
+          placeholder='Add a comment...'
+          onChange={(e) => setCommentMessage(e.target.value)}
+          onFocus={(e) => {
+            if (preserveSelection) {
+              e.preventDefault();
+            }
+          }}
+        >
+          <Mention
+            data={unitMembersQueryResult.data ?? []}
+            trigger={'@'}
+            style={mentionStyles}
+            markup=',!__display__,!'
           />
-        ) : (
-          // Для обычных пользователей используем MentionsInput с функциональностью упоминаний
-          <MentionsInput
-            inputRef={inputRef}
-            value={commentMessage}
-            style={isLast ? { ...mentionInputStyles, suggestions: {
-              ...mentionInputStyles.suggestions,
-              list: {
-                ...mentionInputStyles.suggestions.list,
-                bottom: "calc(100% + 20px)"
-              }
-            }} : mentionInputStyles}
-            placeholder='Add a comment...'
-            onChange={(e) => setCommentMessage(e.target.value)}
-            onFocus={(e) => {
-              if (preserveSelection) {
-                e.preventDefault();
-              }
-            }}
-          >
-            <Mention
-              data={unitMembersQueryResult.data ?? []}
-              trigger={'@'}
-              style={mentionStyles}
-              markup=',!__display__,!'
-            />
-          </MentionsInput>
-        )}
+        </MentionsInput>
       </div>
       <div className={styles['input__bottom']}>
-        {/* Временно показываем кнопку @ для всех пользователей для отладки */}
+        {/* Кнопка @ отображается для всех пользователей */}
         <button
           className={styles['mention__button']}
           type='button'
