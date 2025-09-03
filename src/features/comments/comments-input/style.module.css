@@ -72,7 +72,6 @@ strong {
   border-top: 1px solid var(--text5);
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .mention__button {
@@ -89,6 +88,9 @@ strong {
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text70);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .mention__button:hover {
@@ -102,12 +104,6 @@ strong {
 .mention__button:active {
   transform: translateY(0);
   box-shadow: none;
-}
-
-.mention__button svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
 }
 
 .comment__input_mention {

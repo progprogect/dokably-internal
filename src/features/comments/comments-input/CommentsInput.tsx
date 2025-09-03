@@ -203,7 +203,7 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
             title="Упомянуть пользователя"
             aria-label="Упомянуть пользователя"
           >
-            <MentionIcon />
+            @
           </button>
         )}
         <button
