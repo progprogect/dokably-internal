@@ -36,8 +36,12 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const { documentId } = useParams();
   const { activeWorkspace } = useWorkspaceContext();
 
+  // Определяем, является ли пользователь гостем
+  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
+
+  // Отключаем запрос участников для гостей
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
-    enabled: !_.isNil(documentId),
+    enabled: !_.isNil(documentId) && !isGuest, // Полностью отключаем для гостей
     select: selectMembersForSuggestions,
   });
 
@@ -67,9 +71,6 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onCancel]);
-
-  // Определяем, является ли пользователь гостем
-  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -189,21 +190,20 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
           )}
       </div>
       <div className={styles['input__bottom']}>
-        {/* Кнопка @ отображается только для не-гостей */}
+        {/* Скрываем кнопку mention для гостей */}
         {!isGuest && (
           <button
             className={styles['mention__button']}
             type='button'
             onClick={() => {
               insertMentionTrigger();
+              // setCommentMessage(commentMessage => commentMessage?.length ? `${commentMessage + ' @'}` : "@");
               if (!preserveSelection) {
                 inputRef.current?.focus();
               }
             }}
-            title="Упомянуть пользователя"
-            aria-label="Упомянуть пользователя"
           >
-            @
+            <MentionIcon />
           </button>
         )}
         <button
