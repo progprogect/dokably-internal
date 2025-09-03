@@ -18,6 +18,7 @@ import { mentionInputStyles } from './mentionsInputStyles';
 import { mentionStyles } from './mentionStyles';
 import styles from './style.module.css';
 import { Unit } from '@entities/models/unit';
+import { useWorkspaceContext } from '@app/context/workspace/context';
 
 export type CommentsInputProps = {
   className?: string;
@@ -33,9 +34,20 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   const inputRef = useRef<HTMLInputElement | null>(null);
   const user = useUser();
   const { documentId } = useParams();
+  const { activeWorkspace } = useWorkspaceContext();
 
   // Проверяем, является ли пользователь гостем (anonymous)
   const isGuestUser = user?.email === 'anonymous';
+
+  // Отладочная информация
+  console.log('CommentsInput Debug:', {
+    user,
+    userEmail: user?.email,
+    isGuestUser,
+    hasUser: !!user,
+    userType: typeof user,
+    userKeys: user ? Object.keys(user) : 'no user'
+  });
 
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
     enabled: !_.isNil(documentId) && !isGuestUser, // Отключаем запрос для гостей
@@ -145,7 +157,7 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
                 e.preventDefault();
               }
             }}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         ) : (
           // Для обычных пользователей используем MentionsInput с функциональностью упоминаний
@@ -177,21 +189,20 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
         )}
       </div>
       <div className={styles['input__bottom']}>
-        {/* Кнопка @ отображается для всех пользователей, кроме гостей */}
-        {!isGuestUser && (
-          <button
-            className={styles['mention__button']}
-            type='button'
-            onClick={() => {
-              insertMentionTrigger();
-              if (!preserveSelection) {
-                inputRef.current?.focus();
-              }
-            }}
-          >
-            <MentionIcon />
-          </button>
-        )}
+        {/* Временно показываем кнопку @ для всех пользователей для отладки */}
+        <button
+          className={styles['mention__button']}
+          type='button'
+          onClick={() => {
+            insertMentionTrigger();
+            if (!preserveSelection) {
+              inputRef.current?.focus();
+            }
+          }}
+          style={{ border: '2px solid red' }} // Временная отладочная рамка
+        >
+          <MentionIcon />
+        </button>
         <button
           type='submit'
           className={styles['comment-button']}
