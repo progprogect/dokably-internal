@@ -71,14 +71,6 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
   // Определяем, является ли пользователь гостем
   const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
-  // Отладочная информация (можно убрать после тестирования)
-  console.log('CommentsInput Debug:', {
-    userRole: activeWorkspace?.userRole,
-    userEmail: user?.email,
-    isGuest,
-    hasActiveWorkspace: !!activeWorkspace
-  });
-
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!user) return;
