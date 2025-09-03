@@ -66,7 +66,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       // Try to load from API using unitId (specific document/unit)
       if (unitId) {
         try {
-          console.log('Loading chat history from API for unitId:', unitId);
+
           const historyItems = await chatGPTService.getChatHistory(unitId);
           const { chat, review } = convertHistoryToMessages(historyItems);
           
@@ -76,10 +76,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             reviewMessages: review
           }));
           
-          console.log('Successfully loaded chat history from API:', { 
-            chatCount: chat.length, 
-            reviewCount: review.length 
-          });
+          
           return;
         } catch (error) {
           console.warn('Failed to load chat history from API, falling back to localStorage:', error);
@@ -87,7 +84,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       }
       
       // Fallback to localStorage if API fails or unitId not available
-      console.log('Loading chat history from localStorage for documentId:', documentId);
+
       const savedChatMessages = loadChatHistory(documentId, 'chat');
       const savedReviewMessages = loadChatHistory(documentId, 'review');
       

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { useSearchParams } from 'react-router-dom';
 import { MoreHorizontal } from 'lucide-react';
 import { LoaderIcon } from 'react-hot-toast';
@@ -44,26 +45,28 @@ export const KanbanCard: FC<IKanbanCard> = ({ task, columnId, index, moveCard, d
   //   };
   // }, []);
 
-  const [{ isDragging }, drag, preview] = useDrag({
-    type: 'CARD',
-    item: { type: 'CARD', id: task.id, columnId },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-    end: () => {
-      setDraggedCardId(null);
+  // @dnd-kit - настройка для карточки как sortable
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: task.id,
+    data: {
+      type: 'task',
+      task,
+      columnId,
+      index,
     },
   });
 
-  const [, drop] = useDrop({
-    accept: 'CARD',
-    hover: (item: any) => {
-      if (item.id !== task.id) {
-        moveCard(item.id, item.columnId, columnId, index);
-        item.columnId = columnId;
-      }
-    },
-  });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   const [expanded, setExpanded] = useState<boolean>(false);
   const [showNewSubTask, setShowNewSubtask] = useState<boolean>(false);
@@ -100,25 +103,22 @@ export const KanbanCard: FC<IKanbanCard> = ({ task, columnId, index, moveCard, d
 
   const dateProperty = task.properties.find((p) => p.type === DATE_PROPERTY_TYPE);
 
-  useEffect(() => {
-    if (isDragging) {
-      setDraggedCardId(task?.id);
-    }
-  }, [isDragging, task?.id, setDraggedCardId]);
 
-  useEffect(() => {
-    preview(null);
-  }, [preview]);
 
   return (
     <div
       key={task.id}
-      ref={(node) => drag(drop(node))}
-      style={{ opacity: draggedCardId === task?.id ? 0 : 1 }}
+      ref={setNodeRef}
+      style={{
+        ...style,
+        opacity: isDragging ? 0.5 : 1
+      }}
       onClick={() => openTaskPanel(task.id, false)}
       onMouseEnter={() => setIsShowDropdownSelect(true)}
       onMouseLeave={() => setIsShowDropdownSelect(false)}
       className='flex flex-col justify-between cursor-pointer w-full p-3 rounded-md bg-white'
+      {...attributes}
+      {...listeners}
     >
       <div className='min-h-[100px] flex flex-col justify-between cursor-pointer w-full'>
         <div className='flex items-start justify-between w-full'>

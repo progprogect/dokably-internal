@@ -49,18 +49,7 @@ class ChatGPTService {
       const requestBody: ChatGPTReviewRequest = { type, content };
       const url = `${BASE_API}/frontend/unit/${unitId}/chatgpt/review`;
       
-      // Enhanced logging for debugging
-      console.log('ChatGPT Review Request:', {
-        endpoint: 'review',
-        url,
-        unitId,
-        requestBody: {
-          type,
-          contentLength: content.length,
-          contentPreview: content.substring(0, 100) + (content.length > 100 ? '...' : '')
-        },
-        timestamp: new Date().toISOString()
-      });
+
       
       const response = await customFetch(url, {
         method: 'POST',
@@ -117,12 +106,7 @@ class ChatGPTService {
     try {
       const url = `${BASE_API}/frontend/unit/${unitId}/chatgpt/history`;
       
-      console.log('ChatGPT History Request:', {
-        endpoint: 'history',
-        url,
-        unitId,
-        timestamp: new Date().toISOString()
-      });
+
       
       const response = await customFetch(url, {
         method: 'GET'
@@ -131,13 +115,7 @@ class ChatGPTService {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         
-        console.error('ChatGPT History API Error:', {
-          status: response.status,
-          statusText: response.statusText,
-          url: response.url,
-          errorData,
-          timestamp: new Date().toISOString()
-        });
+
         
         throw new ChatGPTApiError({
           code: `HTTP_${response.status}`,
@@ -148,29 +126,14 @@ class ChatGPTService {
 
       const data = await response.json();
       
-      console.log('ChatGPT History API Response:', {
-        status: response.status,
-        headers: {
-          'content-type': response.headers.get('content-type'),
-          'content-length': response.headers.get('content-length')
-        },
-        dataType: typeof data,
-        dataStructure: Array.isArray(data) ? 'Array' : (data.history ? 'Object with history' : 'Other'),
-        dataPreview: Array.isArray(data) ? 
-          `Array with ${data.length} items` : 
-          (data.history ? `Object with history array of ${data.history.length} items` : JSON.stringify(data).substring(0, 100)),
-        timestamp: new Date().toISOString()
-      });
+
       
       // Handle array response format according to API spec
       if (Array.isArray(data)) {
-        console.log('Processing direct array response:', data.slice(0, 2)); // Show first 2 items
         return data;
       } else if (data.history && Array.isArray(data.history)) {
-        console.log('Processing object with history array:', data.history.slice(0, 2)); // Show first 2 items
         return data.history;
       } else {
-        console.error('Unexpected response format:', data);
         throw new ChatGPTApiError({
           code: 'INVALID_RESPONSE',
           message: 'Received unexpected response format from chat history API',
@@ -182,7 +145,7 @@ class ChatGPTService {
         throw error;
       }
       
-      console.error('Error fetching chat history:', error);
+
       throw new ChatGPTApiError({
         code: 'NETWORK_ERROR',
         message: 'Failed to fetch chat history due to network error',
@@ -207,14 +170,7 @@ class ChatGPTService {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       
-      // Улучшенное логирование для отладки
-      console.error(`ChatGPT API Error - ${endpoint}:`, {
-        status: response.status,
-        statusText: response.statusText,
-        url: response.url,
-        errorData,
-        timestamp: new Date().toISOString()
-      });
+
       
       throw new ChatGPTApiError({
         code: `HTTP_${response.status}`,

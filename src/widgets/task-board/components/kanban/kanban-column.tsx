@@ -1,6 +1,7 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 import { MoreHorizontal, PencilIcon } from 'lucide-react';
-import { useDrag, useDrop } from 'react-dnd';
+import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { LoaderIcon } from 'react-hot-toast';
 
 import { cn } from '@app/utils/cn';
@@ -97,55 +98,44 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ column, moveCard, moveColumn, 
     await updateTaskStatus(task.id, id);
   };
 
-  const [{}, drag] = useDrag({
-    type: 'COLUMN',
-    item: { type: 'COLUMN', id: column.id },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
+  // @dnd-kit - настройка для колонны как droppable zone
+  const { setNodeRef: dropRef, isOver } = useDroppable({
+    id: id,
+    data: {
+      type: 'column',
+      column,
+    },
   });
 
-  const [{ isOver }, drop] = useDrop(
-    () => ({
-      accept: ['CARD', 'COLUMN'],
-      collect: (monitor) => ({
-        isOver: monitor.isOver(),
-      }),
-      drop: (item: any) => {
-        if (item.type === 'CARD') {
-          if (item.columnId !== id) {
-            moveCard(item.id, item.columnId, id, cards.length);
-            item.columnId = id;
-          }
-          setTimeout(() => {
-            const currentCardStatusId = cards
-              .find((card) => card.id === item.id)
-              ?.properties.find((p) => p.type === STATUS_PROPERTY_TYPE)?.value;
-            if (currentCardStatusId !== item.columnId) {
-              onStatusChange(item);
-            }
-            setDraggedCardId(null);
-          }, 0);
-        }
-        if (item.type === 'COLUMN') {
-          if (item.id !== id) {
-            moveColumn(item.id, id);
-            item.id = id;
-          }
-        }
-      },
-    }),
-    [cards],
-  );
+  // @dnd-kit - настройка для колонны как sortable (для перестановки колонн)
+  const {
+    attributes,
+    listeners,
+    setNodeRef: dragRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: id,
+    data: {
+      type: 'column',
+      column,
+    },
+  });
 
   return (
     <>
       <div
-        ref={(node) => drag(drop(node))}
+        ref={(node) => {
+          dropRef(node);
+          dragRef(node);
+        }}
         className={cn(
           'w-60 min-w-[240px] p-2 rounded-md flex flex-col gap-4 relative group group/column cursor-pointer',
           { 'bg-text10': isOver, 'hover:bg-backgroundHover': !isOver },
         )}
+        {...attributes}
+        {...listeners}
       >
         <div className='flex items-center justify-between sticky top-0'>
           <div className='text-xs flex items-center gap-1 flex-1 overflow-hidden mr-2'>
@@ -198,17 +188,19 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ column, moveCard, moveColumn, 
             'flex-grow min-h-[200px]': isOver,
           })}
         >
-          {cards.map((card, index) => (
-            <KanbanCard
-              key={card.id}
-              index={index}
-              columnId={id}
-              task={card}
-              moveCard={moveCard}
-              draggedCardId={draggedCardId}
-              setDraggedCardId={setDraggedCardId}
-            />
-          ))}
+          <SortableContext items={cards.map(card => card.id)} strategy={verticalListSortingStrategy}>
+            {cards.map((card, index) => (
+              <KanbanCard
+                key={card.id}
+                index={index}
+                columnId={id}
+                task={card}
+                moveCard={moveCard}
+                draggedCardId={draggedCardId}
+                setDraggedCardId={setDraggedCardId}
+              />
+            ))}
+          </SortableContext>
           {taskIsLoading && (
             <LoaderIcon
               style={{ width: 20, height: 20 }}

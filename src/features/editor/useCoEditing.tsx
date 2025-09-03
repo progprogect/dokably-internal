@@ -23,9 +23,7 @@ interface ICoEditing {
 const delay = 1000;
 
 const useCoEditing = ({ documentId, editorState, setEditorState, unit, isInit, mode }: ICoEditing) => {
-  if (mode != 'default') {
-    return;
-  }
+  // Убираем блокировку mode - пусть работает для всех типов документов
 
   const user = useUser();
   const [savedState, setSavedState] = useState<object | null>(null);
@@ -37,28 +35,7 @@ const useCoEditing = ({ documentId, editorState, setEditorState, unit, isInit, m
   const [subscriptionToken, setSubscriptionToken] = useState(null);
   const [connectionToken, setConnectionToken] = useState(null);
 
-  const deepEqual = (obj1: any, obj2: any): boolean => {
-    if (obj1 === obj2) return true;
-
-    if (obj1 === null || obj2 === null) return false;
-
-    if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {
-      return false;
-    }
-
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-
-    if (keys1.length !== keys2.length) return false;
-
-    for (const key of keys1) {
-      if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
-        return false;
-      }
-    }
-
-    return true;
-  };
+  // Убрали deepEqual - упрощаем логику без сложных сравнений состояний
 
   useEffect(() => {
     (async () => {
@@ -78,9 +55,8 @@ const useCoEditing = ({ documentId, editorState, setEditorState, unit, isInit, m
   useEffect(() => {
     const currentState = getComfortableState(convertToRaw(editorState.getCurrentContent()));
     const typingTimer = setTimeout(() => {
-      const isEqual = deepEqual(serverState, currentState);
-      
-      if (!isEqual && isInit) {
+      // Упрощаем логику - сохраняем если есть изменения и документ инициализирован
+      if (isInit) {
         setSavedState(currentState);
         saveContent(editorState, isInit, unit.id);
       }
@@ -89,13 +65,13 @@ const useCoEditing = ({ documentId, editorState, setEditorState, unit, isInit, m
     return () => {
       clearTimeout(typingTimer);
     };
-  }, [editorState, serverState]);
+  }, [editorState]);
 
   useEffect(() => {
     return () => {
-      const currentState = getComfortableState(convertToRaw(editorState.getCurrentContent()));
-      const isEqual = deepEqual(serverState, savedState);
-      if (!isEqual) {
+      // При размонтировании просто сохраняем текущее состояние
+      if (isInit) {
+        const currentState = getComfortableState(convertToRaw(editorState.getCurrentContent()));
         setSavedState(currentState);
         saveContent(editorState, isInit, unit.id);
       }
@@ -142,15 +118,17 @@ const useCoEditing = ({ documentId, editorState, setEditorState, unit, isInit, m
       subscription.on('publication', (ctx) => {
         const serverState = getComfortableState(JSON.parse(ctx.data.payload.state));
         setServerState(serverState);
+        // Упрощаем - обновляем состояние если это изменение от другого пользователя
         if (user && user.id !== ctx.data.user) {
-          const isEqual = serverState && savedState ? deepEqual(serverState, savedState) : false;
-          if (!isEqual) {
+          try {
             let nextContentState = convertFromRaw(JSON.parse(ctx.data.payload.state));
             const selection = editorState.getSelection();
             let newEditorState = EditorState.push(editorState, nextContentState, 'insert-characters');
 
             EditorState.forceSelection(newEditorState, selection);
             setEditorState(newEditorState);
+          } catch (error) {
+            console.warn('Failed to parse server state:', error);
           }
         }
       });
