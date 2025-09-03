@@ -20,7 +20,6 @@ import { selectMembersForSuggestions } from '@app/queries/unit/members/selectors
 import { mentionInputStyles } from '../comments-input/mentionsInputStyles';
 import { mentionStyles } from '../comments-input/mentionStyles';
 import { Unit } from '@entities/models/unit';
-import { useWorkspaceContext } from '@app/context/workspace/context';
 
 interface ICommentPanel {
   handleDeleteComment: (id: string) => void;
@@ -51,15 +50,13 @@ const CommentPanel = ({
   const [, setLocalStorageCommentKey] = useLocalStorage('comment', '');
   const [useLocalStorageKey, setLocalStorageKey] = useLocalStorage('sidePanel', '');
 
+  // Проверяем, является ли пользователь гостем (anonymous)
+  const isGuestUser = user?.email === 'anonymous';
+
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: unit?.id }, getMembersForUnit, {
-    enabled: !_.isNil(unit?.id),
+    enabled: !_.isNil(unit?.id) && !isGuestUser, // Отключаем запрос для гостей
     select: selectMembersForSuggestions,
   });
-
-  const { activeWorkspace } = useWorkspaceContext();
-
-  // Определяем, является ли пользователь гостем
-  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
 
   useEffect(() => {
     // setReadOnly(true);
@@ -98,71 +95,44 @@ const CommentPanel = ({
     const block = contentState.getBlockForKey(blockKey);
     const offset = selection.getStartOffset();
     const textUntilCursor = block.getText().slice(0, offset);
-    const match = textUntilCursor.match(/(\S+)\s*$/);
-    return !match;
+    const lastChar = textUntilCursor[textUntilCursor.length - 1];
+    return lastChar === ' ' || lastChar === '\n' || lastChar === undefined;
   }, [editorState]);
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (!user) return;
+    if (!user || !commentText.trim()) return;
 
-    if (commentText.length === 0) {
-      return;
-    }
-
-    handleComment({
-      id: uuidv4(),
-      orderIndex: 0,
-      date: new Date(),
-      author: user.name ?? user.email,
-      message: commentText,
-      replies: [],
-    } as Comment);
-  };
-
-  const handleComment = (comment: CommentModel) => {
     const selection = editorState.getSelection();
     const contentState = editorState.getCurrentContent();
     const blockKey = selection.getAnchorKey();
     const block = contentState.getBlockForKey(blockKey);
     const offset = selection.getStartOffset();
     const textUntilCursor = block.getText().slice(0, offset);
-    const match = textUntilCursor.match(/(\S+)\s*$/);
-    if (!match) return;
-    const word = match[1];
-    const wordStart = offset - word.length;
-    const wordEnd = offset;
-    const entityKey = block.getEntityAt(wordStart);
+    const lastChar = textUntilCursor[textUntilCursor.length - 1];
 
-    let newContentState;
-    if (entityKey) {
-      const entity = contentState.getEntity(entityKey);
-      if (entity.getType() === 'COMMENT') {
-        const oldData = entity.getData();
-        const updatedComments = [...(oldData.comments || []), comment];
-        contentState.replaceEntityData(entityKey, { comments: updatedComments });
-        newContentState = contentState;
-      }
+    if (lastChar === ' ' || lastChar === '\n' || lastChar === undefined) {
+      const newComment = {
+        id: uuidv4(),
+        orderIndex: 0,
+        date: new Date(),
+        author: user.name ?? user.email,
+        message: commentText,
+        replies: [],
+      } as Comment;
+
+      const newContentState = Modifier.insertText(
+        contentState,
+        selection,
+        ` ${newComment.message} `,
+        undefined,
+        newComment.id,
+      );
+
+      const newEditorState = EditorState.push(editorState, newContentState, 'insert-characters');
+      setEditorState(newEditorState);
+      setCommentText('');
     }
-
-    if (!entityKey || newContentState == null) {
-      const contentStateWithEntity = contentState.createEntity('COMMENT', 'MUTABLE', {
-        comments: [comment],
-      });
-      const newEntityKey = contentStateWithEntity.getLastCreatedEntityKey();
-      const wordSelection = SelectionState.createEmpty(blockKey).merge({
-        anchorOffset: wordStart,
-        focusOffset: wordEnd,
-      });
-      newContentState = Modifier.applyEntity(contentStateWithEntity, wordSelection, newEntityKey);
-    }
-    const newEditorState = EditorState.set(editorState, {
-      currentContent: newContentState,
-    });
-
-    setEditorState(newEditorState);
-    setLocalStorageCommentKey(comment.id);
-    setCommentText('');
   };
 
   return (
@@ -210,7 +180,19 @@ const CommentPanel = ({
               className={'comment-view__form'}
               onSubmit={onSubmit}
             >
-              {!isGuest ? (
+              {isGuestUser ? (
+                // Для гостей используем обычный input без функциональности упоминаний
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={commentText}
+                  placeholder='Add a comment'
+                  onChange={(e) => setCommentText(e.target.value)}
+                  disabled={addCommentIsDisabled}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              ) : (
+                // Для обычных пользователей используем MentionsInput с функциональностью упоминаний
                 <MentionsInput
                   inputRef={inputRef}
                   value={commentText}
@@ -235,16 +217,6 @@ const CommentPanel = ({
                     markup=',!__display__,!'
                   />
                 </MentionsInput>
-              ) : (
-                // Для гостей используем обычный input без функционала упоминаний
-                <input
-                  ref={inputRef}
-                  value={commentText}
-                  placeholder='Add a comment'
-                  onChange={(e) => setCommentText(e.target.value)}
-                  disabled={addCommentIsDisabled}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
               )}
               <button
                 type='submit'

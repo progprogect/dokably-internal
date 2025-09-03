@@ -8,7 +8,6 @@ import { getDate } from '@app/utils/date';
 import { Mention, MentionsInput, SuggestionDataItem } from 'react-mentions';
 import { mentionInputStyles } from '@features/comments/comments-input/mentionsInputStyles';
 import { mentionStyles } from '@features/comments/comments-input/mentionStyles';
-import { useWorkspaceContext } from '@app/context/workspace/context';
 import useUser from '@app/hooks/useUser';
 
 interface ICommentView {
@@ -41,11 +40,10 @@ const CommentView = ({
 }: ICommentView) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [replyText, setReplyText] = useState<string>('');
-  const { activeWorkspace } = useWorkspaceContext();
   const user = useUser();
 
-  // Определяем, является ли пользователь гостем
-  const isGuest = activeWorkspace?.userRole === 'guest' || user?.email === 'anonymous';
+  // Проверяем, является ли пользователь гостем (anonymous)
+  const isGuestUser = user?.email === 'anonymous';
 
   const handleSendReply = (event: any) => {
     event.preventDefault();
@@ -149,18 +147,19 @@ const CommentView = ({
               }
               onSubmit={handleSendReply}
             >
-              {/* <input
-                ref={inputRef}
-                type='textarea'
-                placeholder='Reply'
-                onChange={(e) => {
-                  setReplyText(e.target.value);
-                }}
-                value={replyText}
-                autoFocus={autofocus}
-              /> */}
-
-              {!isGuest ? (
+              {isGuestUser ? (
+                // Для гостей используем обычный input без функциональности упоминаний
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={replyText}
+                  placeholder='Reply'
+                  onChange={(e) => setReplyText(e.target.value)}
+                  autoFocus={autofocus}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              ) : (
+                // Для обычных пользователей используем MentionsInput с функциональностью упоминаний
                 <MentionsInput
                   inputRef={inputRef}
                   value={replyText}
@@ -182,16 +181,6 @@ const CommentView = ({
                     markup=',!__display__,!'
                   />
                 </MentionsInput>
-              ) : (
-                // Для гостей используем обычный input без функционала упоминаний
-                <input
-                  ref={inputRef}
-                  value={replyText}
-                  placeholder='Reply'
-                  onChange={(e) => setReplyText(e.target.value)}
-                  autoFocus={autofocus}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
               )}
               <button
                 type='submit'
