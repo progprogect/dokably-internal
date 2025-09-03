@@ -44,7 +44,7 @@ const DocumentDetails = ({ unit, details }: IDocumentDetails) => {
         anchorOffset: firstBlock.getText().length,
       }),
     );
-  }, [details, unit]);
+  }, [details?.state, unit?.id]); // Стабилизируем зависимости - используем только необходимые поля
 
   const [editorState, setEditorState] = useState<EditorState>(_editorState);
 
