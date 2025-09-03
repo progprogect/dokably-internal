@@ -50,19 +50,15 @@ const GuestViewUnitPage = () => {
       setUnit(unit);
       setIsUnitFetching(false);
     } catch (error) {
-      console.error('Error fetching unit:', error);
       navigate('/404');
     }
-  }, [getUnitPermissionsAndUpdate, navigate]);
+  }, []);
 
   useEffect(() => {
     if (!unitId || !workspaceId) return;
 
-    // Предотвращаем повторную загрузку, если unit уже загружен
-    if (unit && unit.id === unitId) return;
-
     handlePickUnitFlow(unitId, workspaceId);
-  }, [unitId, workspaceId, unit?.id, handlePickUnitFlow]);
+  }, [unitId, workspaceId]);
 
   useEffect(() => {
     if (!unit) return;
@@ -88,10 +84,14 @@ const GuestViewUnitPage = () => {
     case 'document':
       return (
         <div className='home-layout h-full'>
-          <DocumentDetails
-            unit={unit}
-            details={documentQueryResult.data}
-          />
+          {documentQueryResult.data ? (
+            <DocumentDetails
+              unit={unit}
+              details={documentQueryResult.data}
+            />
+          ) : (
+            <Loading customClass='relative' />
+          )}
         </div>
       );
 

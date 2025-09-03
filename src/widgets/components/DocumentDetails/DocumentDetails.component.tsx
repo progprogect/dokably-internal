@@ -44,9 +44,29 @@ const DocumentDetails = ({ unit, details }: IDocumentDetails) => {
         anchorOffset: firstBlock.getText().length,
       }),
     );
-  }, [details?.state, unit?.id]); // Стабилизируем зависимости - используем только необходимые поля
+  }, [details, unit]);
 
-  const [editorState, setEditorState] = useState<EditorState>(_editorState);
+  const [editorState, setEditorState] = useState<EditorState | null>(null);
+
+  // Для гостей устанавливаем editorState только один раз, для обычных пользователей - при каждом изменении
+  useEffect(() => {
+    if (!_editorState) return;
+    
+    if (isAnonymousGuestUser) {
+      // Для гостей устанавливаем состояние только один раз
+      if (!editorState) {
+        setEditorState(_editorState);
+      }
+    } else {
+      // Для обычных пользователей обновляем при каждом изменении
+      setEditorState(_editorState);
+    }
+  }, [_editorState, isAnonymousGuestUser, editorState]);
+
+  // Не рендерим компонент, если нет editorState
+  if (!editorState) {
+    return <div className="flex items-center justify-center h-full text-gray-500">Loading document...</div>;
+  }
 
   const commentEntities = useMemo(() => getEntities(editorState, 'COMMENT'), [editorState]);
 
