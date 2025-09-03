@@ -48,7 +48,11 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
     userType: typeof user,
     userKeys: user ? Object.keys(user) : 'no user',
     documentId,
-    activeWorkspace
+    activeWorkspace,
+    // Добавляем информацию о пропсах
+    preserveSelection,
+    onCancel: !!onCancel,
+    isLast
   });
 
   const unitMembersQueryResult = useGetUnitMembersQuery({ unitId: documentId }, getMembersForUnit, {
@@ -183,19 +187,26 @@ const CommentsInput = ({ onComment, className, preserveSelection = false, onCanc
         </MentionsInput>
       </div>
       <div className={styles['input__bottom']}>
-        {/* Кнопка @ отображается для всех пользователей */}
+        {/* Принудительно показываем кнопку @ для отладки */}
         <button
           className={styles['mention__button']}
           type='button'
           onClick={() => {
+            console.log('Mention button clicked!');
             insertMentionTrigger();
             if (!preserveSelection) {
               inputRef.current?.focus();
             }
           }}
-          style={{ border: '2px solid red' }} // Временная отладочная рамка
+          style={{ 
+            border: '2px solid red',
+            backgroundColor: 'yellow',
+            padding: '8px',
+            margin: '4px'
+          }} // Яркая отладочная рамка
         >
           <MentionIcon />
+          <span style={{ marginLeft: '4px', fontSize: '12px' }}>@</span>
         </button>
         <button
           type='submit'

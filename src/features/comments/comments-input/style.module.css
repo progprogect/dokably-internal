@@ -72,11 +72,22 @@ strong {
   border-top: 1px solid var(--text5);
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Добавляем выравнивание по центру */
 }
 
 .mention__button {
   margin-left: 6px;
   padding: 5px;
+  /* Принудительные стили для отладки */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  background-color: #f0f0f0;
+  border: 2px solid #ff0000;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .mention__button:hover {
